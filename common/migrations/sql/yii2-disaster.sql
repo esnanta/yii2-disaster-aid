@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: kenenong-aid
+-- Host: localhost    Database: yii2-disaster
 -- ------------------------------------------------------
 -- Server version	8.0.44-0ubuntu0.24.04.1
 
@@ -313,6 +313,113 @@ LOCK TABLES `t_aid_plan_details` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_article`
+--
+
+DROP TABLE IF EXISTS `t_article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_article` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `body` text NOT NULL,
+  `view` varchar(255) DEFAULT NULL,
+  `category_id` int DEFAULT NULL,
+  `thumbnail_base_url` varchar(1024) DEFAULT NULL,
+  `thumbnail_path` varchar(1024) DEFAULT NULL,
+  `status` smallint NOT NULL DEFAULT '0',
+  `created_by` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `published_at` int DEFAULT NULL,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_article_slug` (`slug`),
+  KEY `fk_article_author` (`created_by`),
+  KEY `fk_article_updater` (`updated_by`),
+  KEY `fk_article_category` (`category_id`),
+  CONSTRAINT `fk_article_author` FOREIGN KEY (`created_by`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_article_category` FOREIGN KEY (`category_id`) REFERENCES `t_article_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_article_updater` FOREIGN KEY (`updated_by`) REFERENCES `t_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_article`
+--
+
+LOCK TABLES `t_article` WRITE;
+/*!40000 ALTER TABLE `t_article` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_article_attachment`
+--
+
+DROP TABLE IF EXISTS `t_article_attachment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_article_attachment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `article_id` int NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `base_url` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `size` int DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` int DEFAULT NULL,
+  `order` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_article_attachment_article` (`article_id`),
+  CONSTRAINT `fk_article_attachment_article` FOREIGN KEY (`article_id`) REFERENCES `t_article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_article_attachment`
+--
+
+LOCK TABLES `t_article_attachment` WRITE;
+/*!40000 ALTER TABLE `t_article_attachment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_article_attachment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_article_category`
+--
+
+DROP TABLE IF EXISTS `t_article_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_article_category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `body` text,
+  `parent_id` int DEFAULT NULL,
+  `status` smallint NOT NULL DEFAULT '0',
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_article_category_slug` (`slug`),
+  KEY `fk_article_category_section` (`parent_id`),
+  CONSTRAINT `fk_article_category_section` FOREIGN KEY (`parent_id`) REFERENCES `t_article_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_article_category`
+--
+
+LOCK TABLES `t_article_category` WRITE;
+/*!40000 ALTER TABLE `t_article_category` DISABLE KEYS */;
+INSERT INTO `t_article_category` VALUES (1,'news','News',NULL,NULL,1,1766779750,NULL);
+/*!40000 ALTER TABLE `t_article_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `t_auth_assignment`
 --
 
@@ -573,6 +680,85 @@ LOCK TABLES `t_entity_type` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_file_storage_item`
+--
+
+DROP TABLE IF EXISTS `t_file_storage_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_file_storage_item` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `component` varchar(255) NOT NULL,
+  `base_url` varchar(1024) NOT NULL,
+  `path` varchar(1024) NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `size` int DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `upload_ip` varchar(45) DEFAULT NULL,
+  `created_at` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_file_storage_item`
+--
+
+LOCK TABLES `t_file_storage_item` WRITE;
+/*!40000 ALTER TABLE `t_file_storage_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_file_storage_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_i18n_message`
+--
+
+DROP TABLE IF EXISTS `t_i18n_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_i18n_message` (
+  `id` int NOT NULL,
+  `language` varchar(16) NOT NULL,
+  `translation` text,
+  PRIMARY KEY (`id`,`language`),
+  CONSTRAINT `fk_i18n_message_source_message` FOREIGN KEY (`id`) REFERENCES `t_i18n_source_message` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_i18n_message`
+--
+
+LOCK TABLES `t_i18n_message` WRITE;
+/*!40000 ALTER TABLE `t_i18n_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_i18n_message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_i18n_source_message`
+--
+
+DROP TABLE IF EXISTS `t_i18n_source_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_i18n_source_message` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category` varchar(32) DEFAULT NULL,
+  `message` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_i18n_source_message`
+--
+
+LOCK TABLES `t_i18n_source_message` WRITE;
+/*!40000 ALTER TABLE `t_i18n_source_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_i18n_source_message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `t_item`
 --
 
@@ -645,6 +831,34 @@ LOCK TABLES `t_item_category` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_key_storage_item`
+--
+
+DROP TABLE IF EXISTS `t_key_storage_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_key_storage_item` (
+  `key` varchar(128) NOT NULL,
+  `value` text NOT NULL,
+  `comment` text,
+  `updated_at` int DEFAULT NULL,
+  `created_at` int DEFAULT NULL,
+  PRIMARY KEY (`key`),
+  UNIQUE KEY `idx_key_storage_item_key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_key_storage_item`
+--
+
+LOCK TABLES `t_key_storage_item` WRITE;
+/*!40000 ALTER TABLE `t_key_storage_item` DISABLE KEYS */;
+INSERT INTO `t_key_storage_item` VALUES ('backend.layout-boxed','0',NULL,NULL,NULL),('backend.layout-collapsed-sidebar','0',NULL,NULL,NULL),('backend.layout-fixed','0',NULL,NULL,NULL),('backend.theme-skin','skin-blue','skin-blue, skin-black, skin-purple, skin-green, skin-red, skin-yellow',NULL,NULL),('frontend.maintenance','disabled','Set it to \"enabled\" to turn on maintenance mode',NULL,NULL);
+/*!40000 ALTER TABLE `t_key_storage_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `t_media_file`
 --
 
@@ -685,9 +899,146 @@ LOCK TABLES `t_media_file` WRITE;
 /*!40000 ALTER TABLE `t_media_file` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `t_page`
+--
 
+DROP TABLE IF EXISTS `t_page`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_page` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `slug` varchar(2048) NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `body` text NOT NULL,
+  `view` varchar(255) DEFAULT NULL,
+  `status` smallint NOT NULL,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `t_page`
+--
 
+LOCK TABLES `t_page` WRITE;
+/*!40000 ALTER TABLE `t_page` DISABLE KEYS */;
+INSERT INTO `t_page` VALUES (1,'about','About','Lorem ipsum dolor sit amet, consectetur adipiscing elit.',NULL,1,1766779750,1766779750);
+/*!40000 ALTER TABLE `t_page` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_rbac_auth_assignment`
+--
+
+DROP TABLE IF EXISTS `t_rbac_auth_assignment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_rbac_auth_assignment` (
+  `item_name` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `user_id` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `created_at` int DEFAULT NULL,
+  PRIMARY KEY (`item_name`,`user_id`),
+  CONSTRAINT `t_rbac_auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `t_rbac_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_rbac_auth_assignment`
+--
+
+LOCK TABLES `t_rbac_auth_assignment` WRITE;
+/*!40000 ALTER TABLE `t_rbac_auth_assignment` DISABLE KEYS */;
+INSERT INTO `t_rbac_auth_assignment` VALUES ('administrator','1',1766779753),('manager','2',1766779753),('user','3',1766779753);
+/*!40000 ALTER TABLE `t_rbac_auth_assignment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_rbac_auth_item`
+--
+
+DROP TABLE IF EXISTS `t_rbac_auth_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_rbac_auth_item` (
+  `name` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` smallint NOT NULL,
+  `description` text COLLATE utf8mb3_unicode_ci,
+  `rule_name` varchar(64) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `data` blob,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`name`),
+  KEY `rule_name` (`rule_name`),
+  KEY `idx-auth_item-type` (`type`),
+  CONSTRAINT `t_rbac_auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `t_rbac_auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_rbac_auth_item`
+--
+
+LOCK TABLES `t_rbac_auth_item` WRITE;
+/*!40000 ALTER TABLE `t_rbac_auth_item` DISABLE KEYS */;
+INSERT INTO `t_rbac_auth_item` VALUES ('administrator',1,NULL,NULL,NULL,1766779753,1766779753),('editOwnModel',2,NULL,'ownModelRule',NULL,1766779753,1766779753),('loginToBackend',2,NULL,NULL,NULL,1766779753,1766779753),('manager',1,NULL,NULL,NULL,1766779753,1766779753),('user',1,NULL,NULL,NULL,1766779753,1766779753);
+/*!40000 ALTER TABLE `t_rbac_auth_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_rbac_auth_item_child`
+--
+
+DROP TABLE IF EXISTS `t_rbac_auth_item_child`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_rbac_auth_item_child` (
+  `parent` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`parent`,`child`),
+  KEY `child` (`child`),
+  CONSTRAINT `t_rbac_auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `t_rbac_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_rbac_auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `t_rbac_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_rbac_auth_item_child`
+--
+
+LOCK TABLES `t_rbac_auth_item_child` WRITE;
+/*!40000 ALTER TABLE `t_rbac_auth_item_child` DISABLE KEYS */;
+INSERT INTO `t_rbac_auth_item_child` VALUES ('user','editOwnModel'),('administrator','loginToBackend'),('manager','loginToBackend'),('administrator','manager'),('administrator','user'),('manager','user');
+/*!40000 ALTER TABLE `t_rbac_auth_item_child` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_rbac_auth_rule`
+--
+
+DROP TABLE IF EXISTS `t_rbac_auth_rule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_rbac_auth_rule` (
+  `name` varchar(64) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `data` blob,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_rbac_auth_rule`
+--
+
+LOCK TABLES `t_rbac_auth_rule` WRITE;
+/*!40000 ALTER TABLE `t_rbac_auth_rule` DISABLE KEYS */;
+INSERT INTO `t_rbac_auth_rule` VALUES ('ownModelRule',_binary 'O:29:\"common\\rbac\\rule\\OwnModelRule\":3:{s:4:\"name\";s:12:\"ownModelRule\";s:9:\"createdAt\";i:1766779753;s:9:\"updatedAt\";i:1766779753;}',1766779753,1766779753);
+/*!40000 ALTER TABLE `t_rbac_auth_rule` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `t_shelter`
@@ -731,6 +1082,115 @@ LOCK TABLES `t_shelter` WRITE;
 /*!40000 ALTER TABLE `t_shelter` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `t_system_db_migration`
+--
+
+DROP TABLE IF EXISTS `t_system_db_migration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_system_db_migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_system_db_migration`
+--
+
+LOCK TABLES `t_system_db_migration` WRITE;
+/*!40000 ALTER TABLE `t_system_db_migration` DISABLE KEYS */;
+INSERT INTO `t_system_db_migration` VALUES ('m000000_000000_base',1766779746),('m140703_123000_user',1766779747),('m140703_123055_log',1766779748),('m140703_123104_page',1766779748),('m140703_123803_article',1766779748),('m140703_123813_rbac',1766779748),('m140709_173306_widget_menu',1766779748),('m140709_173333_widget_text',1766779748),('m140712_123329_widget_carousel',1766779748),('m140805_084745_key_storage_item',1766779748),('m141012_101932_i18n_tables',1766779748),('m150318_213934_file_storage_item',1766779748),('m150414_195800_timeline_event',1766779748),('m150725_192740_seed_data',1766779750),('m150929_074021_article_attachment_order',1766779750),('m160203_095604_user_token',1766779750),('m190130_155645_add_article_slug_index',1766779750);
+/*!40000 ALTER TABLE `t_system_db_migration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_system_log`
+--
+
+DROP TABLE IF EXISTS `t_system_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_system_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `level` int DEFAULT NULL,
+  `category` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `log_time` double DEFAULT NULL,
+  `prefix` text COLLATE utf8mb3_unicode_ci,
+  `message` text COLLATE utf8mb3_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `idx_log_level` (`level`),
+  KEY `idx_log_category` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_system_log`
+--
+
+LOCK TABLES `t_system_log` WRITE;
+/*!40000 ALTER TABLE `t_system_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_system_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_system_rbac_migration`
+--
+
+DROP TABLE IF EXISTS `t_system_rbac_migration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_system_rbac_migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_system_rbac_migration`
+--
+
+LOCK TABLES `t_system_rbac_migration` WRITE;
+/*!40000 ALTER TABLE `t_system_rbac_migration` DISABLE KEYS */;
+INSERT INTO `t_system_rbac_migration` VALUES ('m000000_000000_base',1766779750),('m150625_214101_roles',1766779753),('m150625_215624_init_permissions',1766779753),('m151223_074604_edit_own_model',1766779753);
+/*!40000 ALTER TABLE `t_system_rbac_migration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_timeline_event`
+--
+
+DROP TABLE IF EXISTS `t_timeline_event`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_timeline_event` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `application` varchar(64) NOT NULL,
+  `category` varchar(64) NOT NULL,
+  `event` varchar(64) NOT NULL,
+  `data` text,
+  `created_at` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_created_at` (`created_at`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_timeline_event`
+--
+
+LOCK TABLES `t_timeline_event` WRITE;
+/*!40000 ALTER TABLE `t_timeline_event` DISABLE KEYS */;
+INSERT INTO `t_timeline_event` VALUES (1,'frontend','user','signup','{\"public_identity\":\"webmaster\",\"user_id\":1,\"created_at\":1766779748}',1766779748),(2,'frontend','user','signup','{\"public_identity\":\"manager\",\"user_id\":2,\"created_at\":1766779748}',1766779748),(3,'frontend','user','signup','{\"public_identity\":\"user\",\"user_id\":3,\"created_at\":1766779748}',1766779748);
+/*!40000 ALTER TABLE `t_timeline_event` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_unit`
+--
 
 DROP TABLE IF EXISTS `t_unit`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -763,6 +1223,98 @@ LOCK TABLES `t_unit` WRITE;
 /*!40000 ALTER TABLE `t_unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `t_user`
+--
+
+DROP TABLE IF EXISTS `t_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) DEFAULT NULL,
+  `auth_key` varchar(32) NOT NULL,
+  `access_token` varchar(40) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `oauth_client` varchar(255) DEFAULT NULL,
+  `oauth_client_user_id` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `status` smallint NOT NULL DEFAULT '2',
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  `logged_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_user`
+--
+
+LOCK TABLES `t_user` WRITE;
+/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
+INSERT INTO `t_user` VALUES (1,'webmaster','yo0JbjlPc5lQe4_ASYbYYPj4PMdPhEdP','pWE8EBBmisbFPstnK5JPK6L3InBcAYlJav9zVTss','$2y$13$X1z2lkJu945A1apnypf2m.O1UqBT20irarXPURJZcd1ntRz2/E/H.',NULL,NULL,'webmaster@example.com',2,1766779749,1766779749,1766781829),(2,'manager','gs550c5HRupVMR09gkJXGFZ3aL2-EJDk','NXUIGV13Fy9uvv-4KFhWEW3j4ooWE624FdXX6LvE','$2y$13$6kFrHQhQdNnvacIgAjIJAOxdLYeXLnt.Hm7ufR/DD8Xj5TdCgC6MK',NULL,NULL,'manager@example.com',2,1766779749,1766779749,NULL),(3,'user','q8Cdf1umIeoVcHSK7Orw_Y7FEt4ubIod','X0B4BpjXvvnwnjbvrl3NkM1TOTHS3oyiuVbLBRdK','$2y$13$3zatTSgiBqywsSW7vX29Tuqi2T8LHGzw8HbczGNn0WOCexAYDSBfW',NULL,NULL,'user@example.com',2,1766779750,1766779750,NULL);
+/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_user_profile`
+--
+
+DROP TABLE IF EXISTS `t_user_profile`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_user_profile` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) DEFAULT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `avatar_path` varchar(255) DEFAULT NULL,
+  `avatar_base_url` varchar(255) DEFAULT NULL,
+  `locale` varchar(32) NOT NULL,
+  `gender` smallint DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_user_profile`
+--
+
+LOCK TABLES `t_user_profile` WRITE;
+/*!40000 ALTER TABLE `t_user_profile` DISABLE KEYS */;
+INSERT INTO `t_user_profile` VALUES (1,'John',NULL,'Doe',NULL,NULL,'en-US',NULL),(2,NULL,NULL,NULL,NULL,NULL,'en-US',NULL),(3,NULL,NULL,NULL,NULL,NULL,'en-US',NULL);
+/*!40000 ALTER TABLE `t_user_profile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_user_token`
+--
+
+DROP TABLE IF EXISTS `t_user_token`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_user_token` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `token` varchar(40) NOT NULL,
+  `expire_at` int DEFAULT NULL,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_user_token`
+--
+
+LOCK TABLES `t_user_token` WRITE;
+/*!40000 ALTER TABLE `t_user_token` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_user_token` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `t_vehicle_type`
@@ -914,6 +1466,124 @@ LOCK TABLES `t_verification_vote` WRITE;
 /*!40000 ALTER TABLE `t_verification_vote` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_verification_vote` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_widget_carousel`
+--
+
+DROP TABLE IF EXISTS `t_widget_carousel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_widget_carousel` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) NOT NULL,
+  `status` smallint DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_widget_carousel`
+--
+
+LOCK TABLES `t_widget_carousel` WRITE;
+/*!40000 ALTER TABLE `t_widget_carousel` DISABLE KEYS */;
+INSERT INTO `t_widget_carousel` VALUES (1,'index',1);
+/*!40000 ALTER TABLE `t_widget_carousel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_widget_carousel_item`
+--
+
+DROP TABLE IF EXISTS `t_widget_carousel_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_widget_carousel_item` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `carousel_id` int NOT NULL,
+  `base_url` varchar(1024) DEFAULT NULL,
+  `path` varchar(1024) DEFAULT NULL,
+  `asset_url` varchar(1024) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `url` varchar(1024) DEFAULT NULL,
+  `caption` varchar(1024) DEFAULT NULL,
+  `status` smallint NOT NULL DEFAULT '0',
+  `order` int DEFAULT '0',
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_item_carousel` (`carousel_id`),
+  CONSTRAINT `fk_item_carousel` FOREIGN KEY (`carousel_id`) REFERENCES `t_widget_carousel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_widget_carousel_item`
+--
+
+LOCK TABLES `t_widget_carousel_item` WRITE;
+/*!40000 ALTER TABLE `t_widget_carousel_item` DISABLE KEYS */;
+INSERT INTO `t_widget_carousel_item` VALUES (1,1,'http://disaster.localhost/yii2-disaster-kit','img/yii2-starter-kit.gif','http://disaster.localhost/yii2-disaster-kit/img/yii2-starter-kit.gif','image/gif','/',NULL,1,0,NULL,NULL);
+/*!40000 ALTER TABLE `t_widget_carousel_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_widget_menu`
+--
+
+DROP TABLE IF EXISTS `t_widget_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_widget_menu` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `key` varchar(32) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `items` text NOT NULL,
+  `status` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_widget_menu`
+--
+
+LOCK TABLES `t_widget_menu` WRITE;
+/*!40000 ALTER TABLE `t_widget_menu` DISABLE KEYS */;
+INSERT INTO `t_widget_menu` VALUES (1,'frontend-index','Frontend index menu','[\n    {\n        \"label\": \"Get started with Yii2\",\n        \"url\": \"http://www.yiiframework.com\",\n        \"options\": {\n            \"tag\": \"span\"\n        },\n        \"template\": \"<a href=\\\"{url}\\\" class=\\\"btn btn-lg btn-success\\\">{label}</a>\"\n    },\n    {\n        \"label\": \"Yii2 Starter Kit on GitHub\",\n        \"url\": \"https://github.com/yii2-starter-kit/yii2-starter-kit\",\n        \"options\": {\n            \"tag\": \"span\"\n        },\n        \"template\": \"<a href=\\\"{url}\\\" class=\\\"btn btn-lg btn-primary\\\">{label}</a>\"\n    },\n    {\n        \"label\": \"Find a bug?\",\n        \"url\": \"https://github.com/yii2-starter-kit/yii2-starter-kit/issues\",\n        \"options\": {\n            \"tag\": \"span\"\n        },\n        \"template\": \"<a href=\\\"{url}\\\" class=\\\"btn btn-lg btn-danger\\\">{label}</a>\"\n    }\n]',1);
+/*!40000 ALTER TABLE `t_widget_menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_widget_text`
+--
+
+DROP TABLE IF EXISTS `t_widget_text`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_widget_text` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `status` smallint DEFAULT NULL,
+  `created_at` int DEFAULT NULL,
+  `updated_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_widget_text_key` (`key`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_widget_text`
+--
+
+LOCK TABLES `t_widget_text` WRITE;
+/*!40000 ALTER TABLE `t_widget_text` DISABLE KEYS */;
+INSERT INTO `t_widget_text` VALUES (1,'backend_welcome','Welcome to backend','<p>Welcome to Yii2 Starter Kit Dashboard</p>',1,1766779750,1766779750),(2,'ads-example','Google Ads Example Block','<div class=\"lead\">\n                <script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n                <ins class=\"adsbygoogle\"\n                     style=\"display:block\"\n                     data-ad-client=\"ca-pub-9505937224921657\"\n                     data-ad-slot=\"2264361777\"\n                     data-ad-format=\"auto\"></ins>\n                <script>\n                (adsbygoogle = window.adsbygoogle || []).push({});\n                </script>\n            </div>',0,1766779750,1766779750);
+/*!40000 ALTER TABLE `t_widget_text` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -924,4 +1594,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-21  1:21:48
+-- Dump completed on 2025-12-27  3:46:23

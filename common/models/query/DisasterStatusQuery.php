@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\DisasterStatus;
+use common\models\DisasterStatus;
 
 /**
  * This is the ActiveQuery class for [[DisasterStatus]].

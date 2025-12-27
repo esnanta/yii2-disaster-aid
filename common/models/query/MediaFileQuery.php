@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\MediaFile;
+use common\models\MediaFile;
 
 /**
  * This is the ActiveQuery class for [[MediaFile]].

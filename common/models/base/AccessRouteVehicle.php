@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use mootensai\behaviors\UUIDBehavior;
 use Yii;
@@ -23,8 +23,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\AccessRoute $accessRoute
- * @property \app\models\VehicleType $vehicleType
+ * @property \common\models\AccessRoute $accessRoute
+ * @property \common\models\VehicleType $vehicleType
  */
 class AccessRouteVehicle extends \yii\db\ActiveRecord
 {

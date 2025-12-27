@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\VerificationAction;
+use common\models\VerificationAction;
 
 /**
  * This is the ActiveQuery class for [[VerificationAction]].

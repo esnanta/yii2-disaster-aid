@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use mootensai\behaviors\UUIDBehavior;
 use Yii;
@@ -24,8 +24,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\MediaFile[] $mediaFiles
- * @property \app\models\Verification[] $verifications
+ * @property \common\models\MediaFile[] $mediaFiles
+ * @property \common\models\Verification[] $verifications
  */
 class EntityType extends \yii\db\ActiveRecord
 {

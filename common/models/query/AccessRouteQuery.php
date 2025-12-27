@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AccessRoute;
+use common\models\AccessRoute;
 use yii\db\ActiveQuery;
 
 /**

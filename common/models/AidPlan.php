@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\AidPlan as BaseAidPlan;
+use common\models\base\AidPlan as BaseAidPlan;
 
 /**
  * This is the model class for table "t_aid_plan".

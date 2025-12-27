@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AccessRouteVehicle;
+use common\models\AccessRouteVehicle;
 
 /**
  * This is the ActiveQuery class for [[AccessRouteVehicles]].

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\EntityType as BaseEntityType;
+use common\models\base\EntityType as BaseEntityType;
 
 /**
  * This is the model class for table "t_entity_type".
@@ -13,7 +13,7 @@ class EntityType extends BaseEntityType
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return array_replace_recursive(parent::rules(),
 	    [
@@ -33,7 +33,7 @@ class EntityType extends BaseEntityType
     /**
      * @inheritdoc
      */
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),

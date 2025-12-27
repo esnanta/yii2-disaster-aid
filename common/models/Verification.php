@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\Verification as BaseVerification;
+use common\models\base\Verification as BaseVerification;
 
 /**
  * This is the model class for table "t_verification".
@@ -13,7 +13,7 @@ class Verification extends BaseVerification
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return array_replace_recursive(parent::rules(),
 	    [
@@ -30,7 +30,7 @@ class Verification extends BaseVerification
     /**
      * @inheritdoc
      */
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),

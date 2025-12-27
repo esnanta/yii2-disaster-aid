@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\DisasterType;
+use common\models\DisasterType;
 
 /**
  * This is the ActiveQuery class for [[DisasterType]].

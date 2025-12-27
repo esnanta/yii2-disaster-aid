@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\Unit as BaseUnit;
+use common\models\base\Unit as BaseUnit;
 
 /**
  * This is the model class for table "t_unit".
@@ -13,7 +13,7 @@ class Unit extends BaseUnit
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return array_replace_recursive(parent::rules(),
 	    [
@@ -33,7 +33,7 @@ class Unit extends BaseUnit
     /**
      * @inheritdoc
      */
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),

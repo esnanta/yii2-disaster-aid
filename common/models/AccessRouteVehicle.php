@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use app\models\base\AccessRouteVehicle as BaseAccessRouteVehicles;
+use common\models\base\AccessRouteVehicle as BaseAccessRouteVehicles;
 
 /**
  * This is the model class for table "t_access_route_vehicles".

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
-use app\models\base\AccessRoute as BaseAccessRoute;
+use common\models\base\AccessRoute as BaseAccessRoute;
 use common\models\query\AccessRouteQuery;
 use Yii;
 

@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\EntityType;
+use common\models\EntityType;
 
 /**
  * This is the ActiveQuery class for [[EntityType]].

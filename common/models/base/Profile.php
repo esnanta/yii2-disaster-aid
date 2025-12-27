@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -20,7 +20,7 @@ use mootensai\behaviors\UUIDBehavior;
  * @property string $timezone
  * @property string $bio
  *
- * @property \app\models\User $user
+ * @property \common\models\User $user
  */
 class Profile extends \yii\db\ActiveRecord
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use common\models\query\AccessRouteStatusQuery;
 use mootensai\behaviors\UUIDBehavior;
@@ -25,7 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\AccessRoute[] $accessRoutes
+ * @property \common\models\AccessRoute[] $accessRoutes
  */
 class AccessRouteStatus extends \yii\db\ActiveRecord
 {

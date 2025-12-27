@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AccessRouteStatus;
+use common\models\AccessRouteStatus;
 
 /**
  * This is the ActiveQuery class for [[AccessRouteStatus]].

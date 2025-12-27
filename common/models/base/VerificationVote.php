@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use mootensai\behaviors\UUIDBehavior;
 use Yii;
@@ -26,9 +26,9 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\VerificationAction $verificationAction
- * @property \app\models\Verification $verification
- * @property \app\models\Users $votedBy
+ * @property \common\models\VerificationAction $verificationAction
+ * @property \common\models\Verification $verification
+ * @property \common\models\Users $votedBy
  */
 class VerificationVote extends \yii\db\ActiveRecord
 {

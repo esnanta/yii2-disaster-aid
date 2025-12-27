@@ -1,12 +1,15 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
-use app\models\base\Disaster as BaseDisaster;
+use common\models\base\Disaster as BaseDisaster;
 use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "t_disaster".
+ *
+ * @property-read string $disasterStatusLabel
+ * @property-read string $disasterTypeLabel
  */
 class Disaster extends BaseDisaster
 {

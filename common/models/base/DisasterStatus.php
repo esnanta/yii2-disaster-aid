@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use common\models\query\DisasterStatusQuery;
 use mootensai\behaviors\UUIDBehavior;
@@ -25,7 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\Disaster[] $disasters
+ * @property \common\models\Disaster[] $disasters
  */
 class DisasterStatus extends \yii\db\ActiveRecord
 {

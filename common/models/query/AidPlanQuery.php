@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AidPlan;
+use common\models\AidPlan;
 
 /**
  * This is the ActiveQuery class for [[AidPlan]].

@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\Unit;
+use common\models\Unit;
 
 /**
  * This is the ActiveQuery class for [[Unit]].

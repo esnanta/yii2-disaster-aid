@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use common\models\query\AccessRouteSheltersQuery;
 use mootensai\behaviors\UUIDBehavior;
@@ -24,8 +24,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\AccessRoute $accessRoute
- * @property \app\models\Shelter $shelter
+ * @property \common\models\AccessRoute $accessRoute
+ * @property \common\models\Shelter $shelter
  */
 class AccessRouteShelter extends \yii\db\ActiveRecord
 {

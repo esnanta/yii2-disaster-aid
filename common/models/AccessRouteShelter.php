@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
-use app\models\base\AccessRouteShelter as BaseAccessRouteShelters;
+use common\models\base\AccessRouteShelter as BaseAccessRouteShelters;
 use common\models\query\AccessRouteSheltersQuery;
 use Yii;
 

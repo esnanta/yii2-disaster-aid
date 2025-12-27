@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\Shelter;
+use common\models\Shelter;
 
 /**
  * This is the ActiveQuery class for [[Shelter]].

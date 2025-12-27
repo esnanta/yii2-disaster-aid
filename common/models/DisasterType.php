@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\DisasterType as BaseDisasterType;
+use common\models\base\DisasterType as BaseDisasterType;
 
 /**
  * This is the model class for table "t_disaster_type".

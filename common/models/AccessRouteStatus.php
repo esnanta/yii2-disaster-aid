@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\AccessRouteStatus as BaseAccessRouteStatus;
+use common\models\base\AccessRouteStatus as BaseAccessRouteStatus;
 
 /**
  * This is the model class for table "t_access_route_status".

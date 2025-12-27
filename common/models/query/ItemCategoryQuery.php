@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\ItemCategory;
+use common\models\ItemCategory;
 
 /**
  * This is the ActiveQuery class for [[ItemCategory]].

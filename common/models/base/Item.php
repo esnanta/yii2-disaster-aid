@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -25,9 +25,9 @@ use mootensai\behaviors\UUIDBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\AidDistributionDetails[] $aidDistributionDetails
- * @property \app\models\AidPlanDetails[] $aidPlanDetails
- * @property \app\models\ItemCategory $itemCategory
+ * @property \common\models\AidDistributionDetails[] $aidDistributionDetails
+ * @property \common\models\AidPlanDetails[] $aidPlanDetails
+ * @property \common\models\ItemCategory $itemCategory
  */
 class Item extends \yii\db\ActiveRecord
 {

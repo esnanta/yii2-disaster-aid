@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\VerificationVote as BaseVerificationVote;
+use common\models\base\VerificationVote as BaseVerificationVote;
 
 /**
  * This is the model class for table "t_verification_vote".
@@ -13,7 +13,7 @@ class VerificationVote extends BaseVerificationVote
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return array_replace_recursive(parent::rules(),
 	    [
@@ -31,7 +31,7 @@ class VerificationVote extends BaseVerificationVote
     /**
      * @inheritdoc
      */
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),

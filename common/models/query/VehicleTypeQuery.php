@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\VehicleType;
+use common\models\VehicleType;
 
 /**
  * This is the ActiveQuery class for [[VehicleType]].

@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AidDistributionDetails;
+use common\models\AidDistributionDetails;
 
 /**
  * This is the ActiveQuery class for [[AidDistributionDetails]].

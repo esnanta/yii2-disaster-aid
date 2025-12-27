@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\AidDistributionDetails as BaseAidDistributionDetails;
+use common\models\base\AidDistributionDetails as BaseAidDistributionDetails;
 
 /**
  * This is the model class for table "t_aid_distribution_details".

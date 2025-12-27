@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use mootensai\behaviors\UUIDBehavior;
 use Yii;
@@ -29,10 +29,10 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\AccessRouteShelter[] $accessRouteShelters
- * @property \app\models\AidDistribution[] $aidDistributions
- * @property \app\models\AidPlan[] $aidPlans
- * @property \app\models\Disaster $disaster
+ * @property \common\models\AccessRouteShelter[] $accessRouteShelters
+ * @property \common\models\AidDistribution[] $aidDistributions
+ * @property \common\models\AidPlan[] $aidPlans
+ * @property \common\models\Disaster $disaster
  */
 class Shelter extends \yii\db\ActiveRecord
 {

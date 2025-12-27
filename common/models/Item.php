@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
-use \app\models\base\Item as BaseItem;
+use common\models\base\Item as BaseItem;
 
 /**
  * This is the model class for table "t_item".
@@ -13,7 +13,7 @@ class Item extends BaseItem
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return array_replace_recursive(parent::rules(),
 	    [
@@ -30,7 +30,7 @@ class Item extends BaseItem
     /**
      * @inheritdoc
      */
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),

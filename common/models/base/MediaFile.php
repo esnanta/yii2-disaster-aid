@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\base;
+namespace common\models\base;
 
 use mootensai\behaviors\UUIDBehavior;
 use Yii;
@@ -29,7 +29,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \app\models\EntityType $entityType
+ * @property \common\models\EntityType $entityType
  */
 class MediaFile extends \yii\db\ActiveRecord
 {

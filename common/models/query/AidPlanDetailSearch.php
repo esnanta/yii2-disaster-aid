@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\AidPlanDetails;
+use common\models\AidPlanDetails;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

@@ -2,7 +2,7 @@
 
 namespace common\models\query;
 
-use app\models\VerificationVote;
+use common\models\VerificationVote;
 
 /**
  * This is the ActiveQuery class for [[VerificationVote]].

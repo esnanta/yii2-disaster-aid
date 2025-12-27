@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m240727_000000_create_disaster_management_tables
  */
-class m240727_000000_create_disaster_management_tables extends Migration
+class m240727_000000_disaster_management extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,6 @@ class m240727_000000_create_disaster_management_tables extends Migration
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
-            // https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
         }
 

@@ -3,12 +3,12 @@
 namespace common\models;
 
 use Yii;
-use common\models\base\VerificationAction as BaseVerificationAction;
+use common\models\base\VerificationType as BaseVerificationAction;
 
 /**
  * This is the model class for table "t_verification_action".
  */
-class VerificationAction extends BaseVerificationAction
+class VerificationType extends BaseVerificationAction
 {
     /**
      * @inheritdoc
@@ -36,14 +36,14 @@ class VerificationAction extends BaseVerificationAction
     public function attributeHints(): array
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'code' => Yii::t('app', 'Code'),
-            'title' => Yii::t('app', 'Title'),
-            'weight' => Yii::t('app', 'Weight'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'code' => Yii::t('common', 'Code'),
+            'title' => Yii::t('common', 'Title'),
+            'weight' => Yii::t('common', 'Weight'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

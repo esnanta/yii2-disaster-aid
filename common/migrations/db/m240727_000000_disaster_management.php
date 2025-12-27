@@ -34,6 +34,8 @@ class m240727_000000_disaster_management extends Migration
             'uuid' => $this->string(36),
         ], $tableOptions);
 
+        $this->createIndex('uq_disaster_type_uuid', '{{%t_disaster_type}}', 'uuid', true);
+
         // t_disaster_status
         $this->createTable('{{%t_disaster_status}}', [
             'id' => $this->primaryKey(),
@@ -50,6 +52,8 @@ class m240727_000000_disaster_management extends Migration
             'verlock' => $this->integer(),
             'uuid' => $this->string(36),
         ], $tableOptions);
+
+        $this->createIndex('uq_disaster_status_uuid', '{{%t_disaster_status}}', 'uuid', true);
 
         // t_disaster
         $this->createTable('{{%t_disaster}}', [
@@ -73,6 +77,7 @@ class m240727_000000_disaster_management extends Migration
 
         $this->addForeignKey('fk-t_disaster-disaster_type_id', '{{%t_disaster}}', 'disaster_type_id', '{{%t_disaster_type}}', 'id', 'RESTRICT', 'RESTRICT');
         $this->addForeignKey('fk-t_disaster-disaster_status_id', '{{%t_disaster}}', 'disaster_status_id', '{{%t_disaster_status}}', 'id', 'RESTRICT', 'RESTRICT');
+        $this->createIndex('uq_disaster_uuid', '{{%t_disaster}}', 'uuid', true);
 
         // t_item_category
         $this->createTable('{{%t_item_category}}', [
@@ -91,6 +96,8 @@ class m240727_000000_disaster_management extends Migration
             'uuid' => $this->string(36),
         ], $tableOptions);
 
+        $this->createIndex('uq_item_category_uuid', '{{%t_item_category}}', 'uuid', true);
+
         // t_unit
         $this->createTable('{{%t_unit}}', [
             'id' => $this->primaryKey(),
@@ -107,6 +114,8 @@ class m240727_000000_disaster_management extends Migration
             'verlock' => $this->integer(),
             'uuid' => $this->string(36),
         ], $tableOptions);
+
+        $this->createIndex('uq_unit_uuid', '{{%t_unit}}', 'uuid', true);
 
         // t_item
         $this->createTable('{{%t_item}}', [
@@ -128,11 +137,31 @@ class m240727_000000_disaster_management extends Migration
 
         $this->addForeignKey('fk-t_item-item_category_id', '{{%t_item}}', 'item_category_id', '{{%t_item_category}}', 'id', 'RESTRICT', 'RESTRICT');
         $this->addForeignKey('fk-t_item-unit_id', '{{%t_item}}', 'unit_id', '{{%t_unit}}', 'id', 'RESTRICT', 'RESTRICT');
+        $this->createIndex('uq_item_uuid', '{{%t_item}}', 'uuid', true);
+
+        // t_shelter_type
+        $this->createTable('{{%t_shelter_type}}', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string(255),
+            'description' => $this->text(),
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->dateTime(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+            'is_deleted' => $this->tinyInteger(1)->defaultValue(0),
+            'deleted_at' => $this->dateTime(),
+            'deleted_by' => $this->integer(),
+            'verlock' => $this->integer(),
+            'uuid' => $this->string(36),
+        ], $tableOptions);
+
+        $this->createIndex('uq_shelter_type_uuid', '{{%t_shelter_type}}', 'uuid', true);
 
         // t_shelter
         $this->createTable('{{%t_shelter}}', [
             'id' => $this->primaryKey(),
             'disaster_id' => $this->integer(),
+            'shelter_type_id' => $this->integer(),
             'title' => $this->string(255),
             'latitude' => $this->decimal(11, 8),
             'longitude' => $this->decimal(11, 8),
@@ -152,6 +181,8 @@ class m240727_000000_disaster_management extends Migration
         ], $tableOptions);
 
         $this->addForeignKey('fk-t_shelter-disaster_id', '{{%t_shelter}}', 'disaster_id', '{{%t_disaster}}', 'id', 'RESTRICT', 'RESTRICT');
+        $this->addForeignKey('fk-t_shelter-shelter_type_id', '{{%t_shelter}}', 'shelter_type_id', '{{%t_shelter_type}}', 'id', 'RESTRICT', 'RESTRICT');
+        $this->createIndex('uq_shelter_uuid', '{{%t_shelter}}', 'uuid', true);
 
         // t_access_route_status
         $this->createTable('{{%t_access_route_status}}', [
@@ -169,6 +200,8 @@ class m240727_000000_disaster_management extends Migration
             'verlock' => $this->integer(),
             'uuid' => $this->string(36),
         ], $tableOptions);
+
+        $this->createIndex('uq_access_route_status_uuid', '{{%t_access_route_status}}', 'uuid', true);
 
         // t_access_route
         $this->createTable('{{%t_access_route}}', [

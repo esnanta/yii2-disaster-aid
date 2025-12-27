@@ -47,6 +47,19 @@ class m240727_000002_seed_data_master extends Migration
             ]
         );
 
+        // t_shelter_type
+        $this->batchInsert('{{%t_shelter_type}}',
+            ['code', 'title', 'description', 'created_at', 'updated_at', 'created_by', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by', 'verlock', 'uuid'],
+            [
+                ['school','School','School building used as shelter', $now, $now, 1, 1, 0, null, null, 0, $uuid],
+                ['worship-place','Worship Place','Religious building used as shelter', $now, $now, 1, 1, 0, null, null, 0, $uuid],
+                ['tent-camp','Tent Camp','Temporary tent-based shelter', $now, $now, 1, 1, 0, null, null, 0, $uuid],
+                ['community-hall','Community Hall','Public hall used as shelter', $now, $now, 1, 1, 0, null, null, 0, $uuid],
+                ['hospital','Hospital','Medical shelter or referral center', $now, $now, 1, 1, 0, null, null, 0, $uuid],
+            ]
+        );
+
+
         // t_unit
         $this->batchInsert('{{%t_unit}}',
             ['code', 'title', 'description', 'created_at', 'updated_at', 'created_by', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by', 'verlock', 'uuid'],

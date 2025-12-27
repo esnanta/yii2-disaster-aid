@@ -2,30 +2,31 @@
 
 namespace common\models\search;
 
-use common\models\DisasterType;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use common\models\DisasterType;
 
 /**
- * app\models\DisasterTypeSearch represents the model behind the search form about `app\models\DisasterType`.
+ * DisasterTypeSearch represents the model behind the search form about `common\models\DisasterType`.
  */
- class DisasterTypeSearch extends DisasterType
+class DisasterTypeSearch extends DisasterType
 {
     /**
      * @inheritdoc
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            [['id', 'created_by', 'updated_by', 'deleted_by', 'verlock'], 'integer'],
-            [['code', 'title', 'description', 'created_at', 'updated_at', 'is_deleted', 'deleted_at', 'uuid'], 'safe'],
+            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by', 'verlock'], 'integer'],
+            [['code', 'title', 'description', 'created_at', 'updated_at', 'deleted_at', 'uuid'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios(): array
+    public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +39,7 @@ use yii\data\ActiveDataProvider;
      *
      * @return ActiveDataProvider
      */
-    public function search(array $params): ActiveDataProvider
+    public function search($params)
     {
         $query = DisasterType::find();
 
@@ -46,11 +47,7 @@ use yii\data\ActiveDataProvider;
             'query' => $query,
         ]);
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
@@ -60,6 +57,7 @@ use yii\data\ActiveDataProvider;
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            'is_deleted' => $this->is_deleted,
             'deleted_at' => $this->deleted_at,
             'deleted_by' => $this->deleted_by,
             'verlock' => $this->verlock,
@@ -68,7 +66,6 @@ use yii\data\ActiveDataProvider;
         $query->andFilterWhere(['like', 'code', $this->code])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'is_deleted', $this->is_deleted])
             ->andFilterWhere(['like', 'uuid', $this->uuid]);
 
         return $dataProvider;

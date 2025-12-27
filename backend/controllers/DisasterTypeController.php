@@ -1,24 +1,22 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use common\controllers\base\BaseController;
+use Yii;
 use common\models\DisasterType;
 use common\models\search\DisasterTypeSearch;
-use Crenspire\Yii2Inertia\Inertia;
-use Yii;
-use yii\db\Exception;
-use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yii\filters\VerbFilter;
 
 /**
- * DisasterTypeController implements the CRUD actions for the DisasterType model.
+ * DisasterTypeController implements the CRUD actions for DisasterType model.
  */
-class DisasterTypeController extends BaseController
+class DisasterTypeController extends Controller
 {
-    public function behaviors(): array
+
+    /** @inheritdoc */
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -32,215 +30,91 @@ class DisasterTypeController extends BaseController
 
     /**
      * Lists all DisasterType models.
-     * @return Response
-     * @throws ForbiddenHttpException
+     * @return mixed
      */
-    public function actionIndex(): Response
+    public function actionIndex()
     {
-        $this->checkAccess('disasterType.index');
         $searchModel = new DisasterTypeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $types = $dataProvider->getModels();
 
-        $typesData = array_map(function ($type) {
-            return [
-                'id' => $type->id,
-                'code' => $type->code,
-                'title' => $type->title,
-                'description' => $type->description,
-            ];
-        }, $types);
-
-        return Inertia::render('DisasterType/Index', [
-            'types' => $typesData,
-            'pagination' => [
-                'total' => $dataProvider->getPagination()->totalCount,
-                'per_page' => $dataProvider->getPagination()->pageSize,
-                'current_page' => $dataProvider->getPagination()->getPage() + 1,
-                'last_page' => $dataProvider->getPagination()->getPageCount(),
-            ],
-            'filters' => Yii::$app->request->queryParams,
-            'sort' => [
-                'sort_by' => Yii::$app->request->get('sort_by', 'id'),
-                'sort_order' => Yii::$app->request->get('sort_order', 'asc'),
-            ],
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
      * Displays a single DisasterType model.
-     * @param integer $id
-     * @return Response
-     * @throws ForbiddenHttpException
-     * @throws NotFoundHttpException
+     * @param int $id ID
+     * @return mixed
      */
-    public function actionView(int $id): Response
+    public function actionView($id)
     {
-        $model = $this->findModel($id);
-        $this->checkAccess('disasterType.view', $model);
-        
-        return Inertia::render('DisasterType/View', [
-            'type' => $model,
+        return $this->render('view', [
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
      * Creates a new DisasterType model.
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     * @return Response
-     * @throws ForbiddenHttpException
-     * @throws Exception
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
      */
-    public function actionCreate(): Response
+    public function actionCreate()
     {
-        $this->checkAccess('disasterType.create');
         $model = new DisasterType();
 
-        if (Yii::$app->request->isPost) {
-            if ($model->load(Yii::$app->request->post(), '')) {
-                if ($model->validate() && $model->save()) {
-                    Yii::$app->session->setFlash('success', Yii::t('app', 'Data saved successfully.'));
-                    if (Yii::$app->request->headers->get('X-Inertia')) {
-                        return $this->actionIndex();
-                    }
-                    return $this->redirect(['index']);
-                }
-            }
-
-            return Inertia::render('DisasterType/Form', [
-                'type' => null,
-                'errors' => $model->errors,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-
-        return Inertia::render('DisasterType/Form', [
-            'type' => null,
-            'errors' => [],
+        return $this->render('create', [
+            'model' => $model,
         ]);
     }
 
     /**
      * Updates an existing DisasterType model.
-     * If the update is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return Response
-     * @throws NotFoundHttpException
-     * @throws ForbiddenHttpException
-     * @throws Exception
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return mixed
      */
-    public function actionUpdate(int $id): Response
+    public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $this->checkAccess('disasterType.update', $model);
 
-        $isPost = Yii::$app->request->isPost;
-        $isPut = Yii::$app->request->isPut;
-
-        if ($isPost || $isPut) {
-            if ($isPut) {
-                $requestData = Yii::$app->request->bodyParams;
-                if (empty($requestData) && Yii::$app->request->contentType === 'application/json') {
-                    $rawBody = Yii::$app->request->rawBody;
-                    if (!empty($rawBody)) {
-                        $requestData = json_decode($rawBody, true) ?: [];
-                    }
-                }
-            } else {
-                $requestData = Yii::$app->request->post();
-            }
-
-            if ($model->load($requestData, '')) {
-                if ($model->validate() && $model->save()) {
-                    Yii::$app->session->setFlash('success', Yii::t('app', 'Data saved successfully.'));
-                    if (Yii::$app->request->headers->get('X-Inertia')) {
-                        return $this->actionIndex();
-                    }
-                    return $this->redirect(['index']);
-                }
-            }
-
-            return Inertia::render('DisasterType/Form', [
-                'type' => $model,
-                'errors' => $model->errors,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-
-        return Inertia::render('DisasterType/Form', [
-            'type' => $model,
-            'errors' => [],
+        return $this->render('update', [
+            'model' => $model,
         ]);
     }
 
     /**
      * Deletes an existing DisasterType model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return Response
-     * @throws Exception
-     * @throws ForbiddenHttpException
-     * @throws NotFoundHttpException
+     * @param int $id ID
+     * @return mixed
      */
-    public function actionDelete(int $id): Response
+    public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $this->checkAccess('disasterType.delete', $model);
-
-        // Soft delete manually
-        $model->is_deleted = 1;
-        $model->deleted_at = date('Y-m-d H:i:s');
-        $model->deleted_by = Yii::$app->user->id;
-
-        if ($model->save(false)) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Data deleted successfully.'));
-        } else {
-            Yii::$app->session->setFlash('error', Yii::t('app', 'Failed to delete data.'));
-        }
-
-        if (Yii::$app->request->headers->get('X-Inertia')) {
-            return $this->actionIndex();
-        }
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    
     /**
      * Finds the DisasterType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id ID
      * @return DisasterType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): DisasterType
+    protected function findModel($id)
     {
         if (($model = DisasterType::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for Disaster
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return string
-    * @throws NotFoundHttpException
-    */
-    public function actionAddDisaster(): string
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('Disaster');
-            if (!empty($row)) {
-                $row = array_values($row);
-            }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formDisaster', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

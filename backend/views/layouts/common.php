@@ -277,6 +277,33 @@ $logEntries[] = [
                             ],
                         ],
                         [
+                            'label' => Yii::t('backend', 'Disaster Management'),
+                            'url' => '#',
+                            'icon' => FAS::icon('house-damage', ['class' => ['nav-icon']]),
+                            'options' => ['class' => 'nav-item has-treeview'],
+                            'active' => in_array(Yii::$app->controller->id, ['disaster', 'disaster-type', 'disaster-status']),
+                            'items' => [
+                                [
+                                    'label' => Yii::t('backend', 'Disasters'),
+                                    'url' => ['/disaster/index'],
+                                    'icon' => FAR::icon('circle', ['class' => ['nav-icon']]),
+                                    'active' => Yii::$app->controller->id === 'disaster',
+                                ],
+                                [
+                                    'label' => Yii::t('backend', 'Disaster Types'),
+                                    'url' => ['/disaster-type/index'],
+                                    'icon' => FAR::icon('circle', ['class' => ['nav-icon']]),
+                                    'active' => Yii::$app->controller->id === 'disaster-type',
+                                ],
+                                [
+                                    'label' => Yii::t('backend', 'Disaster Statuses'),
+                                    'url' => ['/disaster-status/index'],
+                                    'icon' => FAR::icon('circle', ['class' => ['nav-icon']]),
+                                    'active' => Yii::$app->controller->id === 'disaster-status',
+                                ],
+                            ],
+                        ],
+                        [
                             'label' => Yii::t('backend', 'Translation'),
                             'options' => ['class' => 'nav-header'],
                             'visible' => Yii::$app->components["i18n"]["translations"]['*']['class'] === \yii\i18n\DbMessageSource::class,

@@ -420,117 +420,6 @@ INSERT INTO `t_article_category` VALUES (1,'news','News',NULL,NULL,1,1766779750,
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_auth_assignment`
---
-
-DROP TABLE IF EXISTS `t_auth_assignment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_auth_assignment` (
-  `item_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `created_at` int DEFAULT NULL,
-  PRIMARY KEY (`item_name`,`user_id`),
-  KEY `t_idx-auth_assignment-user_id` (`user_id`),
-  CONSTRAINT `t_auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_auth_assignment`
---
-
-LOCK TABLES `t_auth_assignment` WRITE;
-/*!40000 ALTER TABLE `t_auth_assignment` DISABLE KEYS */;
-INSERT INTO `t_auth_assignment` VALUES ('admin','1',1766253823);
-/*!40000 ALTER TABLE `t_auth_assignment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_auth_item`
---
-
-DROP TABLE IF EXISTS `t_auth_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_auth_item` (
-  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `type` smallint NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `rule_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `data` blob,
-  `created_at` int DEFAULT NULL,
-  `updated_at` int DEFAULT NULL,
-  PRIMARY KEY (`name`),
-  KEY `rule_name` (`rule_name`),
-  KEY `t_idx-auth_item-type` (`type`),
-  CONSTRAINT `t_auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `t_auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_auth_item`
---
-
-LOCK TABLES `t_auth_item` WRITE;
-/*!40000 ALTER TABLE `t_auth_item` DISABLE KEYS */;
-INSERT INTO `t_auth_item` VALUES ('accessRoute.create',2,'Create Access Route',NULL,NULL,1766253823,1766253823),('accessRoute.delete',2,'Delete Access Route',NULL,NULL,1766253823,1766253823),('accessRoute.index',2,'Index Access Route',NULL,NULL,1766253823,1766253823),('accessRoute.report',2,'Report Access Route',NULL,NULL,1766253823,1766253823),('accessRoute.update',2,'Update Access Route',NULL,NULL,1766253823,1766253823),('accessRoute.view',2,'View Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.create',2,'Create Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.delete',2,'Delete Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.index',2,'Index Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.report',2,'Report Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.update',2,'Update Access Route',NULL,NULL,1766253823,1766253823),('accessRouteShelter.view',2,'View Access Route',NULL,NULL,1766253823,1766253823),('accessRouteStatus.create',2,'Create Access Status',NULL,NULL,1766253823,1766253823),('accessRouteStatus.delete',2,'Delete Access Status',NULL,NULL,1766253823,1766253823),('accessRouteStatus.index',2,'Index Access Status',NULL,NULL,1766253823,1766253823),('accessRouteStatus.report',2,'Report Access Status',NULL,NULL,1766253823,1766253823),('accessRouteStatus.update',2,'Update Access Status',NULL,NULL,1766253823,1766253823),('accessRouteStatus.view',2,'View Access Status',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.create',2,'Create Access Vehicle',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.delete',2,'Delete Access Vehicle',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.index',2,'Index Access Vehicle',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.report',2,'Report Access Vehicle',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.update',2,'Update Access Vehicle',NULL,NULL,1766253823,1766253823),('accessRouteVehicles.view',2,'View Access Vehicle',NULL,NULL,1766253823,1766253823),('admin',1,'Administrator',NULL,NULL,1766253823,1766253823),('coordinator',1,'Coordinator',NULL,NULL,1766253823,1766253823),('disaster.create',2,'Create Disaster',NULL,NULL,1766253823,1766253823),('disaster.delete',2,'Delete Disaster',NULL,NULL,1766253823,1766253823),('disaster.index',2,'Index Disaster',NULL,NULL,1766253823,1766253823),('disaster.report',2,'Report Disaster',NULL,NULL,1766253823,1766253823),('disaster.update',2,'Update Disaster',NULL,NULL,1766253823,1766253823),('disaster.view',2,'View Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.create',2,'Create Status Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.delete',2,'Delete Status Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.index',2,'Index Status Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.report',2,'Report Status Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.update',2,'Update Status Disaster',NULL,NULL,1766253823,1766253823),('disasterStatus.view',2,'View Status Disaster',NULL,NULL,1766253823,1766253823),('disasterType.create',2,'Create Type Disaster',NULL,NULL,1766253823,1766253823),('disasterType.delete',2,'Delete Type Disaster',NULL,NULL,1766253823,1766253823),('disasterType.index',2,'Index Type Disaster',NULL,NULL,1766253823,1766253823),('disasterType.report',2,'Report Type Disaster',NULL,NULL,1766253823,1766253823),('disasterType.update',2,'Update Type Disaster',NULL,NULL,1766253823,1766253823),('disasterType.view',2,'View Type Disaster',NULL,NULL,1766253823,1766253823),('guest',1,'Guest',NULL,NULL,1766253823,1766253823),('master.create',2,'Create Master',NULL,NULL,1766253823,1766253823),('master.delete',2,'Delete Master',NULL,NULL,1766253823,1766253823),('master.index',2,'Index Master',NULL,NULL,1766253823,1766253823),('master.report',2,'Report Master',NULL,NULL,1766253823,1766253823),('master.update',2,'Update Master',NULL,NULL,1766253823,1766253823),('master.view',2,'View Master',NULL,NULL,1766253823,1766253823),('regular',1,'Regular User',NULL,NULL,1766253823,1766253823),('transaction.create',2,'Create Transaction',NULL,NULL,1766253823,1766253823),('transaction.delete',2,'Delete Transaction',NULL,NULL,1766253823,1766253823),('transaction.index',2,'Index Transaction',NULL,NULL,1766253823,1766253823),('transaction.report',2,'Report Transaction',NULL,NULL,1766253823,1766253823),('transaction.update',2,'Update Transaction',NULL,NULL,1766253823,1766253823),('transaction.view',2,'View Transaction',NULL,NULL,1766253823,1766253823);
-/*!40000 ALTER TABLE `t_auth_item` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_auth_item_child`
---
-
-DROP TABLE IF EXISTS `t_auth_item_child`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_auth_item_child` (
-  `parent` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `child` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`),
-  CONSTRAINT `t_auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `t_auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_auth_item_child`
---
-
-LOCK TABLES `t_auth_item_child` WRITE;
-/*!40000 ALTER TABLE `t_auth_item_child` DISABLE KEYS */;
-INSERT INTO `t_auth_item_child` VALUES ('master.create','accessRoute.create'),('master.delete','accessRoute.delete'),('master.index','accessRoute.index'),('master.report','accessRoute.report'),('master.update','accessRoute.update'),('master.view','accessRoute.view'),('transaction.create','accessRouteShelter.create'),('transaction.delete','accessRouteShelter.delete'),('transaction.index','accessRouteShelter.index'),('transaction.report','accessRouteShelter.report'),('transaction.update','accessRouteShelter.update'),('transaction.view','accessRouteShelter.view'),('transaction.create','accessRouteStatus.create'),('transaction.delete','accessRouteStatus.delete'),('transaction.index','accessRouteStatus.index'),('transaction.report','accessRouteStatus.report'),('transaction.update','accessRouteStatus.update'),('transaction.view','accessRouteStatus.view'),('transaction.create','accessRouteVehicles.create'),('transaction.delete','accessRouteVehicles.delete'),('transaction.index','accessRouteVehicles.index'),('transaction.report','accessRouteVehicles.report'),('transaction.update','accessRouteVehicles.update'),('transaction.view','accessRouteVehicles.view'),('admin','coordinator'),('master.create','disaster.create'),('master.delete','disaster.delete'),('master.index','disaster.index'),('master.report','disaster.report'),('master.update','disaster.update'),('master.view','disaster.view'),('master.create','disasterStatus.create'),('master.delete','disasterStatus.delete'),('master.index','disasterStatus.index'),('master.report','disasterStatus.report'),('master.update','disasterStatus.update'),('master.view','disasterStatus.view'),('master.create','disasterType.create'),('master.delete','disasterType.delete'),('master.index','disasterType.index'),('master.report','disasterType.report'),('master.update','disasterType.update'),('master.view','disasterType.view'),('admin','master.create'),('admin','master.delete'),('admin','master.index'),('admin','master.report'),('admin','master.update'),('admin','master.view'),('coordinator','regular'),('admin','transaction.create'),('regular','transaction.create'),('admin','transaction.delete'),('admin','transaction.index'),('regular','transaction.index'),('admin','transaction.report'),('admin','transaction.update'),('regular','transaction.update'),('admin','transaction.view'),('regular','transaction.view');
-/*!40000 ALTER TABLE `t_auth_item_child` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_auth_rule`
---
-
-DROP TABLE IF EXISTS `t_auth_rule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_auth_rule` (
-  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `data` blob,
-  `created_at` int DEFAULT NULL,
-  `updated_at` int DEFAULT NULL,
-  PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_auth_rule`
---
-
-LOCK TABLES `t_auth_rule` WRITE;
-/*!40000 ALTER TABLE `t_auth_rule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_auth_rule` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `t_disaster`
 --
 
@@ -951,7 +840,7 @@ CREATE TABLE `t_rbac_auth_assignment` (
 
 LOCK TABLES `t_rbac_auth_assignment` WRITE;
 /*!40000 ALTER TABLE `t_rbac_auth_assignment` DISABLE KEYS */;
-INSERT INTO `t_rbac_auth_assignment` VALUES ('administrator','1',1766779753),('manager','2',1766779753),('user','3',1766779753);
+INSERT INTO `t_rbac_auth_assignment` VALUES ('administrator','1',1766779753),('coordinator','2',1766779753),('regular','3',1766779753);
 /*!40000 ALTER TABLE `t_rbac_auth_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -983,7 +872,7 @@ CREATE TABLE `t_rbac_auth_item` (
 
 LOCK TABLES `t_rbac_auth_item` WRITE;
 /*!40000 ALTER TABLE `t_rbac_auth_item` DISABLE KEYS */;
-INSERT INTO `t_rbac_auth_item` VALUES ('administrator',1,NULL,NULL,NULL,1766779753,1766779753),('editOwnModel',2,NULL,'ownModelRule',NULL,1766779753,1766779753),('loginToBackend',2,NULL,NULL,NULL,1766779753,1766779753),('manager',1,NULL,NULL,NULL,1766779753,1766779753),('user',1,NULL,NULL,NULL,1766779753,1766779753);
+INSERT INTO `t_rbac_auth_item` VALUES ('administrator',1,NULL,NULL,NULL,1766779753,1766779753),('coordinator',1,NULL,NULL,NULL,1766779753,1766779753),('editOwnModel',2,NULL,'ownModelRule',NULL,1766779753,1766779753),('loginToBackend',2,NULL,NULL,NULL,1766779753,1766779753),('regular',1,NULL,NULL,NULL,1766779753,1766779753);
 /*!40000 ALTER TABLE `t_rbac_auth_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1010,7 +899,7 @@ CREATE TABLE `t_rbac_auth_item_child` (
 
 LOCK TABLES `t_rbac_auth_item_child` WRITE;
 /*!40000 ALTER TABLE `t_rbac_auth_item_child` DISABLE KEYS */;
-INSERT INTO `t_rbac_auth_item_child` VALUES ('user','editOwnModel'),('administrator','loginToBackend'),('manager','loginToBackend'),('administrator','manager'),('administrator','user'),('manager','user');
+INSERT INTO `t_rbac_auth_item_child` VALUES ('administrator','coordinator'),('regular','editOwnModel'),('administrator','loginToBackend'),('coordinator','loginToBackend'),('administrator','regular'),('coordinator','regular');
 /*!40000 ALTER TABLE `t_rbac_auth_item_child` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1123,7 +1012,7 @@ CREATE TABLE `t_system_log` (
   PRIMARY KEY (`id`),
   KEY `idx_log_level` (`level`),
   KEY `idx_log_category` (`category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1132,6 +1021,7 @@ CREATE TABLE `t_system_log` (
 
 LOCK TABLES `t_system_log` WRITE;
 /*!40000 ALTER TABLE `t_system_log` DISABLE KEYS */;
+INSERT INTO `t_system_log` VALUES (1,1,'yii\\base\\ErrorException:2',1766861151.0552,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','yii\\base\\ErrorException: file_put_contents(/var/www/html/yii2-disaster-aid/backend/runtime/gii-2.0.46/yii-gii-generators-crud-Generator.json): Failed to open stream: Permission denied in /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php:254\nStack trace:\n#0 [internal function]: yii\\base\\ErrorHandler->handleError()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php(254): file_put_contents()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/controllers/DefaultController.php(60): yii\\gii\\Generator->saveStickyAttributes()\n#3 [internal function]: yii\\gii\\controllers\\DefaultController->actionView()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()\n#5 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Controller.php(178): yii\\base\\InlineAction->runWithParams()\n#6 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(552): yii\\base\\Controller->runAction()\n#7 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction()\n#8 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Application.php(384): yii\\web\\Application->handleRequest()\n#9 /var/www/html/yii2-disaster-aid/backend/web/index.php(23): yii\\base\\Application->run()\n#10 {main}'),(2,2,'yii\\log\\Dispatcher::dispatch',1766861151.1047,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','Unable to send log via yii\\debug\\LogTarget: Exception (Invalid Configuration) \'yii\\base\\InvalidConfigException\' with message \'Unable to open debug data index file: /var/www/html/yii2-disaster-aid/backend/runtime/debug/index.data\' \n\nin /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php:140\n\nStack trace:\n#0 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(79): yii\\debug\\LogTarget->updateIndexFile()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(182): yii\\debug\\LogTarget->export()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\\debug\\LogTarget->collect()\n#3 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Logger.php(226): yii\\log\\Dispatcher->dispatch()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/ErrorHandler.php(154): yii\\log\\Logger->flush()\n#5 [internal function]: yii\\base\\ErrorHandler->handleException()\n#6 {main}'),(3,1,'yii\\base\\ErrorException:2',1766861153.8839,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','yii\\base\\ErrorException: file_put_contents(/var/www/html/yii2-disaster-aid/backend/runtime/gii-2.0.46/yii-gii-generators-crud-Generator.json): Failed to open stream: Permission denied in /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php:254\nStack trace:\n#0 [internal function]: yii\\base\\ErrorHandler->handleError()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php(254): file_put_contents()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/controllers/DefaultController.php(60): yii\\gii\\Generator->saveStickyAttributes()\n#3 [internal function]: yii\\gii\\controllers\\DefaultController->actionView()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()\n#5 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Controller.php(178): yii\\base\\InlineAction->runWithParams()\n#6 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(552): yii\\base\\Controller->runAction()\n#7 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction()\n#8 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Application.php(384): yii\\web\\Application->handleRequest()\n#9 /var/www/html/yii2-disaster-aid/backend/web/index.php(23): yii\\base\\Application->run()\n#10 {main}'),(4,2,'yii\\log\\Dispatcher::dispatch',1766861153.9026,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','Unable to send log via yii\\debug\\LogTarget: Exception (Invalid Configuration) \'yii\\base\\InvalidConfigException\' with message \'Unable to open debug data index file: /var/www/html/yii2-disaster-aid/backend/runtime/debug/index.data\' \n\nin /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php:140\n\nStack trace:\n#0 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(79): yii\\debug\\LogTarget->updateIndexFile()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(182): yii\\debug\\LogTarget->export()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\\debug\\LogTarget->collect()\n#3 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Logger.php(226): yii\\log\\Dispatcher->dispatch()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/ErrorHandler.php(154): yii\\log\\Logger->flush()\n#5 [internal function]: yii\\base\\ErrorHandler->handleException()\n#6 {main}'),(5,1,'yii\\base\\ErrorException:2',1766861160.3926,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','yii\\base\\ErrorException: file_put_contents(/var/www/html/yii2-disaster-aid/backend/runtime/gii-2.0.46/yii-gii-generators-crud-Generator.json): Failed to open stream: Permission denied in /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php:254\nStack trace:\n#0 [internal function]: yii\\base\\ErrorHandler->handleError()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/Generator.php(254): file_put_contents()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-gii/src/controllers/DefaultController.php(60): yii\\gii\\Generator->saveStickyAttributes()\n#3 [internal function]: yii\\gii\\controllers\\DefaultController->actionView()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()\n#5 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Controller.php(178): yii\\base\\InlineAction->runWithParams()\n#6 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(552): yii\\base\\Controller->runAction()\n#7 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction()\n#8 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Application.php(384): yii\\web\\Application->handleRequest()\n#9 /var/www/html/yii2-disaster-aid/backend/web/index.php(23): yii\\base\\Application->run()\n#10 {main}'),(6,2,'yii\\log\\Dispatcher::dispatch',1766861160.4107,'[backend][/yii2-disaster-aid/backend/web/gii/crud]','Unable to send log via yii\\debug\\LogTarget: Exception (Invalid Configuration) \'yii\\base\\InvalidConfigException\' with message \'Unable to open debug data index file: /var/www/html/yii2-disaster-aid/backend/runtime/debug/index.data\' \n\nin /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php:140\n\nStack trace:\n#0 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(79): yii\\debug\\LogTarget->updateIndexFile()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2-debug/src/LogTarget.php(182): yii\\debug\\LogTarget->export()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\\debug\\LogTarget->collect()\n#3 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/log/Logger.php(226): yii\\log\\Dispatcher->dispatch()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/ErrorHandler.php(154): yii\\log\\Logger->flush()\n#5 [internal function]: yii\\base\\ErrorHandler->handleException()\n#6 {main}'),(7,1,'yii\\base\\UnknownClassException',1766861448.6192,'[backend][/yii2-disaster-aid/backend/web/disaster/index]','yii\\base\\UnknownClassException: Unable to find \'backend\\controllers\\DisasterController\' in file: /var/www/html/yii2-disaster-aid/backend/controllers/DisasterController.php. Namespace missing? in /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/BaseYii.php:296\nStack trace:\n#0 [internal function]: yii\\BaseYii::autoload()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(661): class_exists()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(620): yii\\base\\Module->createControllerByID()\n#3 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(546): yii\\base\\Module->createController()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction()\n#5 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Application.php(384): yii\\web\\Application->handleRequest()\n#6 /var/www/html/yii2-disaster-aid/backend/web/index.php(23): yii\\base\\Application->run()\n#7 {main}'),(8,1,'yii\\base\\UnknownClassException',1766861487.7507,'[backend][/yii2-disaster-aid/backend/web/disaster/index]','yii\\base\\UnknownClassException: Unable to find \'backend\\controllers\\DisasterController\' in file: /var/www/html/yii2-disaster-aid/backend/controllers/DisasterController.php. Namespace missing? in /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/BaseYii.php:296\nStack trace:\n#0 [internal function]: yii\\BaseYii::autoload()\n#1 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(661): class_exists()\n#2 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(620): yii\\base\\Module->createControllerByID()\n#3 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Module.php(546): yii\\base\\Module->createController()\n#4 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction()\n#5 /var/www/html/yii2-disaster-aid/vendor/yiisoft/yii2/base/Application.php(384): yii\\web\\Application->handleRequest()\n#6 /var/www/html/yii2-disaster-aid/backend/web/index.php(23): yii\\base\\Application->run()\n#7 {main}');
 /*!40000 ALTER TABLE `t_system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1253,7 +1143,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (1,'webmaster','yo0JbjlPc5lQe4_ASYbYYPj4PMdPhEdP','pWE8EBBmisbFPstnK5JPK6L3InBcAYlJav9zVTss','$2y$13$X1z2lkJu945A1apnypf2m.O1UqBT20irarXPURJZcd1ntRz2/E/H.',NULL,NULL,'webmaster@example.com',2,1766779749,1766779749,1766781829),(2,'manager','gs550c5HRupVMR09gkJXGFZ3aL2-EJDk','NXUIGV13Fy9uvv-4KFhWEW3j4ooWE624FdXX6LvE','$2y$13$6kFrHQhQdNnvacIgAjIJAOxdLYeXLnt.Hm7ufR/DD8Xj5TdCgC6MK',NULL,NULL,'manager@example.com',2,1766779749,1766779749,NULL),(3,'user','q8Cdf1umIeoVcHSK7Orw_Y7FEt4ubIod','X0B4BpjXvvnwnjbvrl3NkM1TOTHS3oyiuVbLBRdK','$2y$13$3zatTSgiBqywsSW7vX29Tuqi2T8LHGzw8HbczGNn0WOCexAYDSBfW',NULL,NULL,'user@example.com',2,1766779750,1766779750,NULL);
+INSERT INTO `t_user` VALUES (1,'webmaster','yo0JbjlPc5lQe4_ASYbYYPj4PMdPhEdP','pWE8EBBmisbFPstnK5JPK6L3InBcAYlJav9zVTss','$2y$13$X1z2lkJu945A1apnypf2m.O1UqBT20irarXPURJZcd1ntRz2/E/H.',NULL,NULL,'webmaster@example.com',2,1766779749,1766779749,1766853399),(2,'manager','gs550c5HRupVMR09gkJXGFZ3aL2-EJDk','NXUIGV13Fy9uvv-4KFhWEW3j4ooWE624FdXX6LvE','$2y$13$6kFrHQhQdNnvacIgAjIJAOxdLYeXLnt.Hm7ufR/DD8Xj5TdCgC6MK',NULL,NULL,'manager@example.com',2,1766779749,1766779749,NULL),(3,'user','q8Cdf1umIeoVcHSK7Orw_Y7FEt4ubIod','X0B4BpjXvvnwnjbvrl3NkM1TOTHS3oyiuVbLBRdK','$2y$13$3zatTSgiBqywsSW7vX29Tuqi2T8LHGzw8HbczGNn0WOCexAYDSBfW',NULL,NULL,'user@example.com',2,1766779750,1766779750,NULL);
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1390,13 +1280,13 @@ LOCK TABLES `t_verification` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_verification_action`
+-- Table structure for table `t_verification_type`
 --
 
-DROP TABLE IF EXISTS `t_verification_action`;
+DROP TABLE IF EXISTS `t_verification_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_verification_action` (
+CREATE TABLE `t_verification_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'confirm, deny, outdated, blocked',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -1417,12 +1307,12 @@ CREATE TABLE `t_verification_action` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_verification_action`
+-- Dumping data for table `t_verification_type`
 --
 
-LOCK TABLES `t_verification_action` WRITE;
-/*!40000 ALTER TABLE `t_verification_action` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_verification_action` ENABLE KEYS */;
+LOCK TABLES `t_verification_type` WRITE;
+/*!40000 ALTER TABLE `t_verification_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_verification_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1435,7 +1325,7 @@ DROP TABLE IF EXISTS `t_verification_vote`;
 CREATE TABLE `t_verification_vote` (
   `id` int NOT NULL AUTO_INCREMENT,
   `verification_id` int DEFAULT NULL,
-  `verification_action_id` int DEFAULT NULL,
+  `verification_type_id` int DEFAULT NULL,
   `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `voted_by` int DEFAULT NULL,
   `voted_at` datetime DEFAULT NULL,
@@ -1450,11 +1340,12 @@ CREATE TABLE `t_verification_vote` (
   `uuid` varchar(36) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_verification_user` (`verification_id`,`voted_by`),
-  KEY `idx_votes_action` (`verification_action_id`),
+  KEY `idx_votes_action` (`verification_type_id`),
   KEY `idx_votes_time` (`voted_at`),
   KEY `t_verification_vote_relation_vote_by` (`voted_by`),
-  CONSTRAINT `t_verification_votes_relation_action` FOREIGN KEY (`verification_action_id`) REFERENCES `t_verification_action` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `t_verification_votes_relation_verification` FOREIGN KEY (`verification_id`) REFERENCES `t_verification` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `t_verification_vote_relation_type` FOREIGN KEY (`verification_type_id`) REFERENCES `t_verification_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `t_verification_vote_relation_verification` FOREIGN KEY (`verification_id`) REFERENCES `t_verification` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `t_verification_vote_relation_vote_by` FOREIGN KEY (`voted_by`) REFERENCES `t_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1594,4 +1485,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-27  3:46:23
+-- Dump completed on 2025-12-28  1:53:35

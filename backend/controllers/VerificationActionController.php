@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use common\controllers\base\BaseController;
 use common\models\search\VerificationActionSearch;
-use common\models\VerificationAction;
+use common\models\VerificationType;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\db\Exception;
@@ -81,7 +81,7 @@ class VerificationActionController extends BaseController
     public function actionCreate()
     {
         $this->checkAccess('verificationAction-create');
-        $model = new VerificationAction();
+        $model = new VerificationType();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -138,12 +138,12 @@ class VerificationActionController extends BaseController
      * Finds the VerificationAction model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id
-     * @return VerificationAction the loaded model
+     * @return VerificationType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): VerificationAction
+    protected function findModel(int $id): VerificationType
     {
-        if (($model = VerificationAction::findOne($id)) !== null) {
+        if (($model = VerificationType::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

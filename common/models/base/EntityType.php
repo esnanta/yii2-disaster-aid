@@ -102,13 +102,13 @@ class EntityType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'code' => Yii::t('app', 'Code'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'code' => Yii::t('common', 'Code'),
+            'title' => Yii::t('common', 'Title'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -117,7 +117,7 @@ class EntityType extends \yii\db\ActiveRecord
      */
     public function getMediaFiles()
     {
-        return $this->hasMany(\app\models\MediaFile::class, ['entity_type_id' => 'id']);
+        return $this->hasMany(\common\models\MediaFile::class, ['entity_type_id' => 'id']);
     }
         
     /**
@@ -125,7 +125,7 @@ class EntityType extends \yii\db\ActiveRecord
      */
     public function getVerifications()
     {
-        return $this->hasMany(\app\models\Verification::class, ['entity_type_id' => 'id']);
+        return $this->hasMany(\common\models\Verification::class, ['entity_type_id' => 'id']);
     }
     
     /**

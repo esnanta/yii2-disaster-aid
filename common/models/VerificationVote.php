@@ -17,7 +17,7 @@ class VerificationVote extends BaseVerificationVote
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['verification_id', 'verification_action_id', 'voted_by', 'created_by', 'updated_by', 'deleted_by', 'verlock'], 'integer'],
+            [['verification_id', 'verification_type_id', 'voted_by', 'created_by', 'updated_by', 'deleted_by', 'verlock'], 'integer'],
             [['notes'], 'string'],
             [['voted_at', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['is_deleted'], 'integer'],
@@ -34,15 +34,15 @@ class VerificationVote extends BaseVerificationVote
     public function attributeHints(): array
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'verification_id' => Yii::t('app', 'Verification ID'),
-            'verification_action_id' => Yii::t('app', 'Verification Action ID'),
-            'notes' => Yii::t('app', 'Notes'),
-            'voted_by' => Yii::t('app', 'Voted By'),
-            'voted_at' => Yii::t('app', 'Voted At'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'verification_id' => Yii::t('common', 'Verification ID'),
+            'verification_type_id' => Yii::t('common', 'Verification Type ID'),
+            'notes' => Yii::t('common', 'Notes'),
+            'voted_by' => Yii::t('common', 'Voted By'),
+            'voted_at' => Yii::t('common', 'Voted At'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

@@ -87,15 +87,15 @@ class Profile extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => Yii::t('app', 'User ID'),
-            'name' => Yii::t('app', 'Name'),
-            'public_email' => Yii::t('app', 'Public Email'),
-            'gravatar_email' => Yii::t('app', 'Gravatar Email'),
-            'gravatar_id' => Yii::t('app', 'Gravatar ID'),
-            'location' => Yii::t('app', 'Location'),
-            'website' => Yii::t('app', 'Website'),
-            'timezone' => Yii::t('app', 'Timezone'),
-            'bio' => Yii::t('app', 'Bio'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'name' => Yii::t('common', 'Name'),
+            'public_email' => Yii::t('common', 'Public Email'),
+            'gravatar_email' => Yii::t('common', 'Gravatar Email'),
+            'gravatar_id' => Yii::t('common', 'Gravatar ID'),
+            'location' => Yii::t('common', 'Location'),
+            'website' => Yii::t('common', 'Website'),
+            'timezone' => Yii::t('common', 'Timezone'),
+            'bio' => Yii::t('common', 'Bio'),
         ];
     }
     
@@ -104,7 +104,7 @@ class Profile extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\app\models\User::class, ['id' => 'user_id']);
+        return $this->hasOne(\common\models\User::class, ['id' => 'user_id']);
     }
     
     /**
@@ -156,11 +156,11 @@ class Profile extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\models\ProfileQuery the active query used by this AR class.
+     * @return \common\models\ProfileQuery the active query used by this AR class.
      */
     public static function find()
     {
-        $query = new \app\models\ProfileQuery(get_called_class());
+        $query = new \common\models\ProfileQuery(get_called_class());
         // Note: Removed soft delete condition because t_profile doesn't have deleted_by column
         return $query;
     }

@@ -110,17 +110,17 @@ class AccessRoute extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'disaster_id' => Yii::t('app', 'Disaster ID'),
-            'route_name' => Yii::t('app', 'Route Name'),
-            'route_geometry' => Yii::t('app', 'Route Geometry'),
-            'route_length_km' => Yii::t('app', 'Route Length Km'),
-            'access_route_status_id' => Yii::t('app', 'Access Route Status ID'),
-            'geometry_updated_at' => Yii::t('app', 'Geometry Updated At'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'disaster_id' => Yii::t('common', 'Disaster ID'),
+            'route_name' => Yii::t('common', 'Route Name'),
+            'route_geometry' => Yii::t('common', 'Route Geometry'),
+            'route_length_km' => Yii::t('common', 'Route Length Km'),
+            'access_route_status_id' => Yii::t('common', 'Access Route Status ID'),
+            'geometry_updated_at' => Yii::t('common', 'Geometry Updated At'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -129,7 +129,7 @@ class AccessRoute extends \yii\db\ActiveRecord
      */
     public function getDisaster()
     {
-        return $this->hasOne(\app\models\Disaster::class, ['id' => 'disaster_id']);
+        return $this->hasOne(\common\models\Disaster::class, ['id' => 'disaster_id']);
     }
         
     /**
@@ -137,7 +137,7 @@ class AccessRoute extends \yii\db\ActiveRecord
      */
     public function getAccessRouteStatus()
     {
-        return $this->hasOne(\app\models\AccessRouteStatus::class, ['id' => 'access_route_status_id']);
+        return $this->hasOne(\common\models\AccessRouteStatus::class, ['id' => 'access_route_status_id']);
     }
         
     /**
@@ -145,7 +145,7 @@ class AccessRoute extends \yii\db\ActiveRecord
      */
     public function getAccessRouteShelters()
     {
-        return $this->hasMany(\app\models\AccessRouteShelter::class, ['access_route_id' => 'id']);
+        return $this->hasMany(\common\models\AccessRouteShelter::class, ['access_route_id' => 'id']);
     }
         
     /**
@@ -153,7 +153,7 @@ class AccessRoute extends \yii\db\ActiveRecord
      */
     public function getAccessRouteVehicles()
     {
-        return $this->hasMany(\app\models\AccessRouteVehicle::class, ['access_route_id' => 'id']);
+        return $this->hasMany(\common\models\AccessRouteVehicle::class, ['access_route_id' => 'id']);
     }
     
     /**

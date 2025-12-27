@@ -33,14 +33,14 @@ class Item extends BaseItem
     public function attributeHints(): array
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'item_category_id' => Yii::t('app', 'Item Category ID'),
-            'title' => Yii::t('app', 'Title'),
-            'unit' => Yii::t('app', 'Unit'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'item_category_id' => Yii::t('common', 'Item Category ID'),
+            'title' => Yii::t('common', 'Title'),
+            'unit' => Yii::t('common', 'Unit'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

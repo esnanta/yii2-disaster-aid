@@ -108,16 +108,16 @@ class Disaster extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'disaster_type_id' => Yii::t('app', 'Disaster Type ID'),
-            'disaster_status_id' => Yii::t('app', 'Disaster Status ID'),
-            'start_date' => Yii::t('app', 'Start Date'),
-            'end_date' => Yii::t('app', 'End Date'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'title' => Yii::t('common', 'Title'),
+            'disaster_type_id' => Yii::t('common', 'Disaster Type ID'),
+            'disaster_status_id' => Yii::t('common', 'Disaster Status ID'),
+            'start_date' => Yii::t('common', 'Start Date'),
+            'end_date' => Yii::t('common', 'End Date'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -126,7 +126,7 @@ class Disaster extends \yii\db\ActiveRecord
      */
     public function getAccessRoutes()
     {
-        return $this->hasMany(\app\models\AccessRoute::class, ['disaster_id' => 'id']);
+        return $this->hasMany(\common\models\AccessRoute::class, ['disaster_id' => 'id']);
     }
         
     /**
@@ -134,7 +134,7 @@ class Disaster extends \yii\db\ActiveRecord
      */
     public function getDisasterStatus()
     {
-        return $this->hasOne(\app\models\DisasterStatus::class, ['id' => 'disaster_status_id']);
+        return $this->hasOne(\common\models\DisasterStatus::class, ['id' => 'disaster_status_id']);
     }
         
     /**
@@ -142,7 +142,7 @@ class Disaster extends \yii\db\ActiveRecord
      */
     public function getDisasterType()
     {
-        return $this->hasOne(\app\models\DisasterType::class, ['id' => 'disaster_type_id']);
+        return $this->hasOne(\common\models\DisasterType::class, ['id' => 'disaster_type_id']);
     }
         
     /**
@@ -150,7 +150,7 @@ class Disaster extends \yii\db\ActiveRecord
      */
     public function getShelters()
     {
-        return $this->hasMany(\app\models\Shelter::class, ['disaster_id' => 'id']);
+        return $this->hasMany(\common\models\Shelter::class, ['disaster_id' => 'id']);
     }
     
     /**

@@ -2,14 +2,14 @@
 
 namespace common\models\search;
 
-use common\models\VerificationAction;
+use common\models\VerificationType;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
  * app\models\VerificationActionSearch represents the model behind the search form about `app\models\VerificationAction`.
  */
- class VerificationActionSearch extends VerificationAction
+ class VerificationActionSearch extends VerificationType
 {
     /**
      * @inheritdoc
@@ -40,7 +40,7 @@ use yii\data\ActiveDataProvider;
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = VerificationAction::find();
+        $query = VerificationType::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

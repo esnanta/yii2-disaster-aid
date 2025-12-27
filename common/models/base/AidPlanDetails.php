@@ -92,13 +92,13 @@ class AidPlanDetails extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'aid_plan_id' => Yii::t('app', 'Aid Plan ID'),
-            'item_id' => Yii::t('app', 'Item ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'unit_id' => Yii::t('app', 'Unit ID'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'aid_plan_id' => Yii::t('common', 'Aid Plan ID'),
+            'item_id' => Yii::t('common', 'Item ID'),
+            'quantity' => Yii::t('common', 'Quantity'),
+            'unit_id' => Yii::t('common', 'Unit ID'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -107,7 +107,7 @@ class AidPlanDetails extends \yii\db\ActiveRecord
      */
     public function getItem()
     {
-        return $this->hasOne(\app\models\Item::class, ['id' => 'item_id']);
+        return $this->hasOne(\common\models\Item::class, ['id' => 'item_id']);
     }
         
     /**
@@ -115,7 +115,7 @@ class AidPlanDetails extends \yii\db\ActiveRecord
      */
     public function getAidPlan()
     {
-        return $this->hasOne(\app\models\AidPlan::class, ['id' => 'aid_plan_id']);
+        return $this->hasOne(\common\models\AidPlan::class, ['id' => 'aid_plan_id']);
     }
         
     /**
@@ -123,7 +123,7 @@ class AidPlanDetails extends \yii\db\ActiveRecord
      */
     public function getUnit()
     {
-        return $this->hasOne(\app\models\Unit::class, ['id' => 'unit_id']);
+        return $this->hasOne(\common\models\Unit::class, ['id' => 'unit_id']);
     }
     
     /**
@@ -175,11 +175,11 @@ class AidPlanDetails extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\models\AidPlanDetailsQuery the active query used by this AR class.
+     * @return \common\models\AidPlanDetailsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        $query = new \app\models\AidPlanDetailsQuery(get_called_class());
+        $query = new \common\models\AidPlanDetailsQuery(get_called_class());
         return $query->where(['t_aid_plan_details.is_deleted' => 0]);
     }
 }

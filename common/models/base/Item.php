@@ -102,14 +102,14 @@ class Item extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'item_category_id' => Yii::t('app', 'Item Category ID'),
-            'title' => Yii::t('app', 'Title'),
-            'unit' => Yii::t('app', 'Unit'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'item_category_id' => Yii::t('common', 'Item Category ID'),
+            'title' => Yii::t('common', 'Title'),
+            'unit' => Yii::t('common', 'Unit'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -118,7 +118,7 @@ class Item extends \yii\db\ActiveRecord
      */
     public function getAidDistributionDetails()
     {
-        return $this->hasMany(\app\models\AidDistributionDetails::class, ['item_id' => 'id']);
+        return $this->hasMany(\common\models\AidDistributionDetails::class, ['item_id' => 'id']);
     }
         
     /**
@@ -126,7 +126,7 @@ class Item extends \yii\db\ActiveRecord
      */
     public function getAidPlanDetails()
     {
-        return $this->hasMany(\app\models\AidPlanDetails::class, ['item_id' => 'id']);
+        return $this->hasMany(\common\models\AidPlanDetails::class, ['item_id' => 'id']);
     }
         
     /**
@@ -134,7 +134,7 @@ class Item extends \yii\db\ActiveRecord
      */
     public function getItemCategory()
     {
-        return $this->hasOne(\app\models\ItemCategory::class, ['id' => 'item_category_id']);
+        return $this->hasOne(\common\models\ItemCategory::class, ['id' => 'item_category_id']);
     }
     
     /**
@@ -186,11 +186,11 @@ class Item extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\models\ItemQuery the active query used by this AR class.
+     * @return \common\models\ItemQuery the active query used by this AR class.
      */
     public static function find()
     {
-        $query = new \app\models\ItemQuery(get_called_class());
+        $query = new \common\models\ItemQuery(get_called_class());
         return $query->where(['t_item.is_deleted' => 0]);
     }
 }

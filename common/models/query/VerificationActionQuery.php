@@ -2,12 +2,12 @@
 
 namespace common\models\query;
 
-use common\models\VerificationAction;
+use common\models\VerificationType;
 
 /**
  * This is the ActiveQuery class for [[VerificationAction]].
  *
- * @see VerificationAction
+ * @see VerificationType
  */
 class VerificationActionQuery extends \yii\db\ActiveQuery
 {
@@ -19,7 +19,7 @@ class VerificationActionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return VerificationAction[]|array
+     * @return VerificationType[]|array
      */
     public function all($db = null)
     {
@@ -28,7 +28,7 @@ class VerificationActionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return VerificationAction|array|null
+     * @return VerificationType|array|null
      */
     public function one($db = null)
     {

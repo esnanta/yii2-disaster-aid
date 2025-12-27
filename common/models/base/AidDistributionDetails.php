@@ -92,13 +92,13 @@ class AidDistributionDetails extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'aid_distribution_id' => Yii::t('app', 'Aid Distribution ID'),
-            'item_id' => Yii::t('app', 'Item ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'unit_id' => Yii::t('app', 'Unit ID'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'aid_distribution_id' => Yii::t('common', 'Aid Distribution ID'),
+            'item_id' => Yii::t('common', 'Item ID'),
+            'quantity' => Yii::t('common', 'Quantity'),
+            'unit_id' => Yii::t('common', 'Unit ID'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -107,7 +107,7 @@ class AidDistributionDetails extends \yii\db\ActiveRecord
      */
     public function getItem()
     {
-        return $this->hasOne(\app\models\Item::class, ['id' => 'item_id']);
+        return $this->hasOne(\common\models\Item::class, ['id' => 'item_id']);
     }
         
     /**
@@ -115,7 +115,7 @@ class AidDistributionDetails extends \yii\db\ActiveRecord
      */
     public function getAidDistribution()
     {
-        return $this->hasOne(\app\models\AidDistribution::class, ['id' => 'aid_distribution_id']);
+        return $this->hasOne(\common\models\AidDistribution::class, ['id' => 'aid_distribution_id']);
     }
         
     /**
@@ -123,7 +123,7 @@ class AidDistributionDetails extends \yii\db\ActiveRecord
      */
     public function getUnit()
     {
-        return $this->hasOne(\app\models\Unit::class, ['id' => 'unit_id']);
+        return $this->hasOne(\common\models\Unit::class, ['id' => 'unit_id']);
     }
     
     /**

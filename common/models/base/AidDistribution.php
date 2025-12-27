@@ -105,15 +105,15 @@ class AidDistribution extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'aid_plan_id' => Yii::t('app', 'Aid Plan ID'),
-            'shelter_id' => Yii::t('app', 'Shelter ID'),
-            'distribution_date' => Yii::t('app', 'Distribution Date'),
-            'distributed_by' => Yii::t('app', 'Distributed By'),
-            'notes' => Yii::t('app', 'Notes'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'aid_plan_id' => Yii::t('common', 'Aid Plan ID'),
+            'shelter_id' => Yii::t('common', 'Shelter ID'),
+            'distribution_date' => Yii::t('common', 'Distribution Date'),
+            'distributed_by' => Yii::t('common', 'Distributed By'),
+            'notes' => Yii::t('common', 'Notes'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -122,7 +122,7 @@ class AidDistribution extends \yii\db\ActiveRecord
      */
     public function getDistributedBy()
     {
-        return $this->hasOne(\app\models\User::class, ['id' => 'distributed_by']);
+        return $this->hasOne(\common\models\User::class, ['id' => 'distributed_by']);
     }
         
     /**
@@ -130,7 +130,7 @@ class AidDistribution extends \yii\db\ActiveRecord
      */
     public function getAidPlan()
     {
-        return $this->hasOne(\app\models\AidPlan::class, ['id' => 'aid_plan_id']);
+        return $this->hasOne(\common\models\AidPlan::class, ['id' => 'aid_plan_id']);
     }
         
     /**
@@ -138,7 +138,7 @@ class AidDistribution extends \yii\db\ActiveRecord
      */
     public function getShelter()
     {
-        return $this->hasOne(\app\models\Shelter::class, ['id' => 'shelter_id']);
+        return $this->hasOne(\common\models\Shelter::class, ['id' => 'shelter_id']);
     }
         
     /**
@@ -146,7 +146,7 @@ class AidDistribution extends \yii\db\ActiveRecord
      */
     public function getAidDistributionDetails()
     {
-        return $this->hasMany(\app\models\AidDistributionDetails::class, ['aid_distribution_id' => 'id']);
+        return $this->hasMany(\common\models\AidDistributionDetails::class, ['aid_distribution_id' => 'id']);
     }
     
     /**

@@ -30,13 +30,13 @@ class AidPlanDetails extends BaseAidPlanDetails
     public function attributeHints()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'aid_plan_id' => Yii::t('app', 'Aid Plan ID'),
-            'item_id' => Yii::t('app', 'Item ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'unit_id' => Yii::t('app', 'Unit ID'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'aid_plan_id' => Yii::t('common', 'Aid Plan ID'),
+            'item_id' => Yii::t('common', 'Item ID'),
+            'quantity' => Yii::t('common', 'Quantity'),
+            'unit_id' => Yii::t('common', 'Unit ID'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

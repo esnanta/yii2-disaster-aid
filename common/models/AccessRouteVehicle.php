@@ -33,12 +33,12 @@ class AccessRouteVehicle extends BaseAccessRouteVehicles
     public function attributeHints(): array
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'access_route_id' => Yii::t('app', 'Access Route ID'),
-            'vehicle_type_id' => Yii::t('app', 'Vehicle Type ID'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'access_route_id' => Yii::t('common', 'Access Route ID'),
+            'vehicle_type_id' => Yii::t('common', 'Vehicle Type ID'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

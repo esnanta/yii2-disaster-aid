@@ -12,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property integer $verification_id
- * @property integer $verification_action_id
+ * @property integer $verification_type_id
  * @property string $notes
  * @property integer $voted_by
  * @property string $voted_at
@@ -26,9 +26,9 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $verlock
  * @property string $uuid
  *
- * @property \common\models\VerificationAction $verificationAction
+ * @property \common\models\VerificationType $verificationAction
  * @property \common\models\Verification $verification
- * @property \common\models\Users $votedBy
+ * @property \common\models\User $votedBy
  */
 class VerificationVote extends \yii\db\ActiveRecord
 {
@@ -104,24 +104,24 @@ class VerificationVote extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'verification_id' => Yii::t('app', 'Verification ID'),
-            'verification_action_id' => Yii::t('app', 'Verification Action ID'),
-            'notes' => Yii::t('app', 'Notes'),
-            'voted_by' => Yii::t('app', 'Voted By'),
-            'voted_at' => Yii::t('app', 'Voted At'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'verification_id' => Yii::t('common', 'Verification ID'),
+            'verification_type_id' => Yii::t('common', 'Verification Type ID'),
+            'notes' => Yii::t('common', 'Notes'),
+            'voted_by' => Yii::t('common', 'Voted By'),
+            'voted_at' => Yii::t('common', 'Voted At'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVerificationAction()
+    public function getVerificationType()
     {
-        return $this->hasOne(\app\models\VerificationAction::class, ['id' => 'verification_action_id']);
+        return $this->hasOne(\common\models\VerificationType::class, ['id' => 'verification_action_id']);
     }
         
     /**
@@ -129,7 +129,7 @@ class VerificationVote extends \yii\db\ActiveRecord
      */
     public function getVerification()
     {
-        return $this->hasOne(\app\models\Verification::class, ['id' => 'verification_id']);
+        return $this->hasOne(\common\models\Verification::class, ['id' => 'verification_id']);
     }
         
     /**
@@ -137,7 +137,7 @@ class VerificationVote extends \yii\db\ActiveRecord
      */
     public function getVotedBy()
     {
-        return $this->hasOne(\app\models\Users::class, ['id' => 'voted_by']);
+        return $this->hasOne(\common\models\User::class, ['id' => 'voted_by']);
     }
     
     /**

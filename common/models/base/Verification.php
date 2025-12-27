@@ -99,13 +99,13 @@ class Verification extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'entity_type_id' => Yii::t('app', 'Entity Type ID'),
-            'entity_id' => Yii::t('app', 'Entity ID'),
-            'last_activity_at' => Yii::t('app', 'Last Activity At'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'entity_type_id' => Yii::t('common', 'Entity Type ID'),
+            'entity_id' => Yii::t('common', 'Entity ID'),
+            'last_activity_at' => Yii::t('common', 'Last Activity At'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -114,7 +114,7 @@ class Verification extends \yii\db\ActiveRecord
      */
     public function getEntityType()
     {
-        return $this->hasOne(\app\models\EntityType::class, ['id' => 'entity_type_id']);
+        return $this->hasOne(\common\models\EntityType::class, ['id' => 'entity_type_id']);
     }
         
     /**
@@ -122,7 +122,7 @@ class Verification extends \yii\db\ActiveRecord
      */
     public function getVerificationVotes()
     {
-        return $this->hasMany(\app\models\VerificationVotes::class, ['verification_id' => 'id']);
+        return $this->hasMany(\common\models\VerificationVotes::class, ['verification_id' => 'id']);
     }
     
     /**

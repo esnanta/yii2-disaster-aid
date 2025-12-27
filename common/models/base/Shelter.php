@@ -109,18 +109,18 @@ class Shelter extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'disaster_id' => Yii::t('app', 'Disaster ID'),
-            'title' => Yii::t('app', 'Title'),
-            'latitude' => Yii::t('app', 'Latitude'),
-            'longitude' => Yii::t('app', 'Longitude'),
-            'evacuee_count' => Yii::t('app', 'Evacuee Count'),
-            'aid_status' => Yii::t('app', 'Aid Status'),
-            'last_aid_distribution_at' => Yii::t('app', 'Last Aid Distribution At'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'disaster_id' => Yii::t('common', 'Disaster ID'),
+            'title' => Yii::t('common', 'Title'),
+            'latitude' => Yii::t('common', 'Latitude'),
+            'longitude' => Yii::t('common', 'Longitude'),
+            'evacuee_count' => Yii::t('common', 'Evacuee Count'),
+            'aid_status' => Yii::t('common', 'Aid Status'),
+            'last_aid_distribution_at' => Yii::t('common', 'Last Aid Distribution At'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
     
@@ -129,7 +129,7 @@ class Shelter extends \yii\db\ActiveRecord
      */
     public function getAccessRouteShelters()
     {
-        return $this->hasMany(\app\models\AccessRouteShelter::class, ['shelter_id' => 'id']);
+        return $this->hasMany(\common\models\AccessRouteShelter::class, ['shelter_id' => 'id']);
     }
         
     /**
@@ -137,7 +137,7 @@ class Shelter extends \yii\db\ActiveRecord
      */
     public function getAidDistributions()
     {
-        return $this->hasMany(\app\models\AidDistribution::class, ['shelter_id' => 'id']);
+        return $this->hasMany(\common\models\AidDistribution::class, ['shelter_id' => 'id']);
     }
         
     /**
@@ -145,7 +145,7 @@ class Shelter extends \yii\db\ActiveRecord
      */
     public function getAidPlans()
     {
-        return $this->hasMany(\app\models\AidPlan::class, ['shelter_id' => 'id']);
+        return $this->hasMany(\common\models\AidPlan::class, ['shelter_id' => 'id']);
     }
         
     /**
@@ -153,7 +153,7 @@ class Shelter extends \yii\db\ActiveRecord
      */
     public function getDisaster()
     {
-        return $this->hasOne(\app\models\Disaster::class, ['id' => 'disaster_id']);
+        return $this->hasOne(\common\models\Disaster::class, ['id' => 'disaster_id']);
     }
     
     /**

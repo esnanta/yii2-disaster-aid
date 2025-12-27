@@ -34,18 +34,18 @@ class Shelter extends BaseShelter
     public function attributeHints(): array
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'disaster_id' => Yii::t('app', 'Disaster ID'),
-            'title' => Yii::t('app', 'Title'),
-            'latitude' => Yii::t('app', 'Latitude'),
-            'longitude' => Yii::t('app', 'Longitude'),
-            'evacuee_count' => Yii::t('app', 'Evacuee Count'),
-            'aid_status' => Yii::t('app', 'Aid Status'),
-            'last_aid_distribution_at' => Yii::t('app', 'Last Aid Distribution At'),
-            'description' => Yii::t('app', 'Description'),
-            'is_deleted' => Yii::t('app', 'Is Deleted'),
-            'verlock' => Yii::t('app', 'Verlock'),
-            'uuid' => Yii::t('app', 'Uuid'),
+            'id' => Yii::t('common', 'ID'),
+            'disaster_id' => Yii::t('common', 'Disaster ID'),
+            'title' => Yii::t('common', 'Title'),
+            'latitude' => Yii::t('common', 'Latitude'),
+            'longitude' => Yii::t('common', 'Longitude'),
+            'evacuee_count' => Yii::t('common', 'Evacuee Count'),
+            'aid_status' => Yii::t('common', 'Aid Status'),
+            'last_aid_distribution_at' => Yii::t('common', 'Last Aid Distribution At'),
+            'description' => Yii::t('common', 'Description'),
+            'is_deleted' => Yii::t('common', 'Is Deleted'),
+            'verlock' => Yii::t('common', 'Verlock'),
+            'uuid' => Yii::t('common', 'Uuid'),
         ];
     }
 }

@@ -29,6 +29,20 @@ if (YII_DEBUG) {
 if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'allowedIPs' => ['*'],
+        'generators' => [
+            'crud' => [
+                'class' => yii\gii\generators\crud\Generator::class,
+                'templates' => [
+                    'mootensai-crud' => '@common/templates/mootensai/crud/default',
+                ],
+            ],
+            'model' => [
+                'class' => yii\gii\generators\model\Generator::class,
+                'templates' => [
+                    'mootensai-model' => '@common/templates/mootensai/model/default',
+                ],
+            ],
+        ],
     ];
 }
 

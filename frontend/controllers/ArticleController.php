@@ -6,9 +6,13 @@ use common\models\Article;
 use common\models\ArticleCategory;
 use common\models\ArticleAttachment;
 use frontend\models\search\ArticleSearch;
+use League\Flysystem\FileNotFoundException;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\web\Controller;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * @author Eugene Terentev <eugene@terentev.net>
@@ -62,9 +66,11 @@ class ArticleController extends Controller
 
     /**
      * @param $id
-     * @return string
+     * @return \yii\console\Response|Response
      * @throws NotFoundHttpException
-     * @throws \yii\web\HttpException
+     * @throws HttpException
+     * @throws InvalidConfigException
+     * @throws FileNotFoundException
      */
     public function actionAttachmentDownload($id)
     {

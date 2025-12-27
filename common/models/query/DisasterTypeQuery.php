@@ -1,0 +1,37 @@
+<?php
+
+namespace common\models\query;
+
+use app\models\DisasterType;
+
+/**
+ * This is the ActiveQuery class for [[DisasterType]].
+ *
+ * @see DisasterType
+ */
+class DisasterTypeQuery extends \yii\db\ActiveQuery
+{
+    /*public function active()
+    {
+        $this->andWhere('[[status]]=1');
+        return $this;
+    }*/
+
+    /**
+     * @inheritdoc
+     * @return DisasterType[]|array
+     */
+    public function all($db = null)
+    {
+        return parent::all($db);
+    }
+
+    /**
+     * @inheritdoc
+     * @return DisasterType|array|null
+     */
+    public function one($db = null)
+    {
+        return parent::one($db);
+    }
+}
